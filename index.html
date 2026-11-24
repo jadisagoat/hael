@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hael — زيت زيتون لبناني بكر ممتاز | ميمس - حاصبيا</title>
+  <meta name="description" content="hael — زيت زيتون بكر ممتاز عضوي ومعجون الزيتون بالزعتر من ميمس - حاصبيا، لبنان. تراث في كل لقمة.">
+  <meta name="theme-color" content="#263018">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" aria-label="hael">
+      <svg class="tree tree--mini" data-tree="mini" aria-hidden="true"></svg>
+      <span class="brand__name">hael</span>
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#story" data-en="Our Story">حكايتنا</a>
+      <a href="#origin" data-en="Mimess · Hasbaya">أرضنا</a>
+      <a href="#products" data-en="Products">منتجاتنا</a>
+      <a href="#tasting" data-en="Tasting Notes">التذوّق</a>
+      <a href="#quality" data-en="Quality">الجودة</a>
+      <a href="#table" data-en="At the Table">على المائدة</a>
+      <a href="#faq" data-en="FAQ">الأسئلة</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="lang" id="langBtn" type="button" aria-label="Switch language">EN</button>
+      <button class="cart-btn" id="cartOpenBtn" type="button" aria-label="Order bag">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
+        <span class="cart-btn__label" data-en="Order Bag">سلّة الطلب</span>
+        <span class="cart-btn__count" id="cartCount">0</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Mobile Nav Drawer ===== -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <nav class="mobile-nav__links">
+      <a href="#story" data-en="Our Story">حكايتنا</a>
+      <a href="#origin" data-en="Mimess · Hasbaya">أرضنا</a>
+      <a href="#products" data-en="Products">منتجاتنا</a>
+      <a href="#tasting" data-en="Tasting Notes">التذوّق</a>
+      <a href="#quality" data-en="Quality">الجودة</a>
+      <a href="#journey" data-en="The Journey">الرحلة</a>
+      <a href="#table" data-en="At the Table">على المائدة</a>
+      <a href="#faq" data-en="FAQ">الأسئلة الشائعة</a>
+      <a href="#contact" data-en="Contact">تواصل معنا</a>
+    </nav>
+    <div class="mobile-nav__meta">
+      <p data-en="Mimess - Hasbaya, Lebanon">ميمس - حاصبيا، لبنان</p>
+      <a href="tel:+9613915796" dir="ltr">03 915 796</a>
+    </div>
+  </div>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="hero__text">
+      <p class="eyebrow reveal" data-en="Mimess · Hasbaya, Lebanon · Organic">ميمس · حاصبيا، لبنان · عضوي</p>
+      <h1 class="hero__title reveal" data-en="From our land<br><em>to your table</em>">من أرضنا<br><em>إلى مائدتكم</em></h1>
+      <p class="hero__lead reveal" data-en="HAEL — extra virgin olive oil from the heart of Mimess, Hasbaya. More than just olive oil: it's our land, our heritage.">
+        HAEL — زيت زيتون بكر ممتاز من قلب ميمس، حاصبيا. أكثر من مجرّد زيت: هو أرضنا، وإرثنا.
+      </p>
+      <div class="hero__cta reveal">
+        <a href="#products" class="btn" data-en="Discover our products">اكتشف منتجاتنا</a>
+        <a href="#contact" class="btn btn--ghost" data-order="general" data-en="Order via WhatsApp">اطلب عبر واتساب</a>
+      </div>
+      <div class="hero__badges reveal">
+        <span data-en="Cold-Pressed">عصر على البارد</span>
+        <span data-en="Single-Origin Hasbaya">موسم حاصبيا</span>
+        <span data-en="Delivery Across Lebanon">توصيل لكل لبنان</span>
+      </div>
+    </div>
+
+    <div class="hero__art reveal">
+      <div class="emblem">
+        <svg class="tree" data-tree="full" role="img" aria-label="hael olive tree"></svg>
+      </div>
+      <span class="olive olive--1"></span>
+      <span class="olive olive--2"></span>
+      <span class="olive olive--3"></span>
+    </div>
+
+    <a href="#story" class="scroll-hint" aria-label="Scroll">
+      <svg viewBox="0 0 60 104" aria-hidden="true">
+        <defs>
+          <radialGradient id="hintOlive" cx=".35" cy=".3"><stop offset="0" stop-color="#b4c070"/><stop offset="1" stop-color="#4f6135"/></radialGradient>
+          <linearGradient id="hintOil" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f3dc92"/><stop offset="1" stop-color="#c9a24a"/></linearGradient>
+        </defs>
+        <g class="hint__branch">
+          <path d="M30 0 C31 10 29 18 30 28" fill="none" stroke="#7d6a4d" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M30 10 C22 8 15 11 12 17 C20 19 27 16 30 10Z" fill="#748a4c"/>
+          <path d="M30 17 C38 15 45 18 48 24 C40 26 33 23 30 17Z" fill="#8a9a5b"/>
+          <ellipse cx="30" cy="38" rx="8" ry="10.500" fill="url(#hintOlive)"/>
+          <ellipse cx="27" cy="34" rx="2" ry="3" fill="#fff" opacity=".35"/>
+        </g>
+        <path class="hint__drop" d="M30 50 C34 56 35.500 59 35.500 61.500 A5.500 5.500 0 0 1 24.500 61.500 C24.500 59 26 56 30 50Z" fill="url(#hintOil)"/>
+        <ellipse class="hint__ripple" cx="30" cy="98" rx="12" ry="3.200" fill="none" stroke="#c9a24a" stroke-width="1.2"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ===== Marquee ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marquee">
+      <span data-en="Extra Virgin Olive Oil">زيت زيتون بكر ممتاز</span><i>✦</i>
+      <span data-en="Mimess · Hasbaya, Lebanon">ميمس · حاصبيا، لبنان</span><i>✦</i>
+      <span data-en="100% Lebanese Product">منتج لبناني ١٠٠٪</span><i>✦</i>
+      <span data-en="From our land to your table">من أرضنا إلى مائدتكم</span><i>✦</i>
+      <span data-en="Olive Paste with Zaatar">معجون الزيتون بالزعتر</span><i>✦</i>
+      <span data-en="Cold-Pressed & Organic">عصر على البارد وعضوي</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- ===== Story ===== -->
+  <section class="story" id="story">
+    <div class="story__inner">
+      <p class="eyebrow reveal" data-en="Our Story">حكايتنا</p>
+      <h2 class="reveal" data-en="A grandfather's name, a grandson's hands.">اسمُ الجدّ، ويدُ الحفيد.</h2>
+      <p class="story__text reveal" data-en="HAEL is named after the grandfather and carried on by the grandson — built on a deep love for our land in Mimess, Hasbaya. Every drop carries the passion, sweat and tradition of our family to yours.">
+        HAEL اسمٌ حمله الجدّ ويكمل الحفيدُ مسيرته اليوم، بحبٍّ عميق لأرضنا في ميمس – حاصبيا. كلّ قطرة تحمل شغف عائلتنا وتعبها وتقاليدها… من بيتنا إلى بيتكم.
+      </p>
+      <p class="story__text story__quote reveal" data-en="“From 90-year-old clay jars to today's tanks… the way we store has changed, but the love for the land and its olives is still the same.”">
+        «من جرار الفخّار من ٩٠ سنة، لخزّانات اليوم… تغيّرت طرق التخزين، بس حبّ الأرض وزيتونها بعده متل ما هو.»
+      </p>
+    </div>
+
+    <div class="story__media">
+      <figure class="shot shot--tall reveal">
+        <img src="assets/img/heritage.jpg" alt="جدّ وحفيده بين أشجار الزيتون عند الغروب" loading="lazy" width="480" height="644">
+        <figcaption data-en="A legacy passed down through generations">إرثٌ ينتقل من جيلٍ إلى جيل</figcaption>
+      </figure>
+      <figure class="shot reveal">
+        <img src="assets/img/jars.jpg" alt="جرار فخّار قديمة لتخزين الزيت" loading="lazy" width="1200" height="1200">
+        <figcaption data-en="Clay jars, 90 years old">جرار الفخّار… من ٩٠ سنة</figcaption>
+      </figure>
+      <figure class="shot shot--tall reveal">
+        <img src="assets/img/window.jpg" alt="شبّاك خشبي قديم في بيت حجري وفوقه عنقود رمّان" loading="lazy" width="1100" height="1467">
+        <figcaption data-en="Behind this window, the journey of HAEL continues">خلف هذا الشبّاك، حكاية HAEL مستمرّة</figcaption>
+      </figure>
+    </div>
+
+    <div class="values">
+      <article class="value reveal">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 44V24M24 30c-8 0-12-5-12-12 8 0 12 5 12 12Zm0-6c0-8 4-13 12-13 0 8-4 13-12 13Z"/></svg>
+        <h3 data-en="100% Natural">طبيعي ١٠٠٪</h3>
+        <p data-en="No additives. No preservatives. Just olives from our land in Mimess.">بلا إضافات، بلا مواد حافظة. زيتون أرضنا في ميمس وبس.</p>
+      </article>
+      <article class="value reveal">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v14M24 20c-6 4-10 4-16 2M24 20c6 4 10 4 16 2M24 20v10M24 30c-4 5-9 8-15 9M24 30c4 5 9 8 15 9M24 30v12"/></svg>
+        <h3 data-en="Traditional">تقليدي</h3>
+        <p data-en="Recipes and know-how handed down from one generation to the next in Hasbaya.">وصفاتٌ ومعرفةٌ تتوارثها الأجيال في حاصبيا جيلاً بعد جيل.</p>
+      </article>
+      <article class="value reveal">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c8 10 13 17 13 24a13 13 0 0 1-26 0c0-7 5-14 13-24Z"/><path d="M18 31a6 6 0 0 0 6 6"/></svg>
+        <h3 data-en="Handpicked">قطاف يدوي</h3>
+        <p data-en="Picked by hand from our own olive groves in Mimess.">يُقطف باليد من بساتين زيتوننا في ميمس.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Origin / Terroir (Mimess - Hasbaya) ===== -->
+  <section class="origin" id="origin">
+    <div class="origin__grid">
+      <div class="origin__copy reveal">
+        <p class="eyebrow" data-en="Origin & Terroir">أرضنا ومصدرنا</p>
+        <h2 data-en="Born on the slopes of Mimess, Hasbaya">من سفوح ميمس في حاصبيا</h2>
+        <p data-en="Nestled in the Hasbaya region near the foothills of Mount Hermon, Mimess is blessed with crisp mountain air, mineral-rich soil, and centuries-old olive groves. The natural climate gives our olives an unmistakable aroma and balanced richness.">
+          تقع ميمس في قضاء حاصبيا على مقربة من سفوح جبل الشيخ، حيث يلتقي هواء الجبل النقي بالتربة الغنية وأشجار الزيتون المعمّرة. هذا المناخ الطبيعي يمنح زيتوننا نكهةً متوازنة وعطراً لا يُخطئه المتذوّق.
+        </p>
+        <div class="origin__meta">
+          <div class="stat">
+            <strong>~800m</strong>
+            <span data-en="Mountain Elevation">ارتفاع عن سطح البحر</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span data-en="Pure & Unblended">نقي غير مخلوط</span>
+          </div>
+          <div class="stat">
+            <strong data-en="First Press">عصرة أولى</strong>
+            <span data-en="Cold Extracted">معصور على البارد</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="origin__card reveal">
+        <div class="card-frame">
+          <div class="card-frame__top">
+            <svg class="tree tree--card" data-tree="label" aria-hidden="true"></svg>
+            <p class="card-frame__sub">EXTRA VIRGIN OLIVE OIL</p>
+            <p class="card-frame__origin">LEBANESE PRODUCT</p>
+          </div>
+          <div class="card-frame__divider"><span>◆</span></div>
+          <ul class="card-frame__info">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-11a6 6 0 1 1 12 0c0 5.5-6 11-6 11Z"/><circle cx="12" cy="10" r="2.2"/></svg>
+              <span data-en="Mimess - Hasbaya, Lebanon">ميمس - حاصبيا، لبنان</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+              <a href="tel:+9613915796" dir="ltr">03 915 796</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+              <a href="https://instagram.com/hael_olive_oil_" target="_blank" rel="noopener" dir="ltr">@HAEL_OLIVE_OIL_</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Products ===== -->
+  <section class="products" id="products">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="Our Products">منتجاتنا</p>
+      <h2 class="reveal" data-en="From our groves to your home">من بساتيننا إلى بيتك</h2>
+    </header>
+
+    <!-- Product 1: Olive Oil -->
+    <div class="product reveal" data-product="oil">
+      <div class="product__art product__art--oil">
+        <svg viewBox="0 0 200 430" class="bottle" aria-hidden="true">
+          <defs>
+            <linearGradient id="glass" x1="0" x2="1">
+              <stop offset="0" stop-color="#1c2610"/><stop offset=".35" stop-color="#3c4d22"/>
+              <stop offset=".6" stop-color="#2a3717"/><stop offset="1" stop-color="#141b0b"/>
+            </linearGradient>
+            <linearGradient id="gold" x1="0" x2="1">
+              <stop offset="0" stop-color="#8f7230"/><stop offset=".4" stop-color="#e3c77d"/><stop offset="1" stop-color="#8f7230"/>
+            </linearGradient>
+          </defs>
+          <rect x="82" y="6" width="36" height="34" rx="4" fill="url(#gold)"/>
+          <path d="M86 40h28v52c0 22 38 34 38 78v226c0 14-10 24-24 24H72c-14 0-24-10-24-24V170c0-44 38-56 38-78Z" fill="url(#glass)"/>
+          <path d="M62 180c0-30 22-44 30-62" stroke="#fff" stroke-opacity=".18" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <rect x="48" y="205" width="104" height="150" fill="#fbf7ec"/>
+          <rect x="48" y="205" width="104" height="3" fill="#b3924a"/><rect x="48" y="352" width="104" height="3" fill="#b3924a"/>
+          <circle cx="100" cy="262" r="34" fill="none" stroke="#b3924a" stroke-width="1"/>
+          <svg x="68" y="230" width="64" height="64" class="tree" data-tree="label"></svg>
+          <text x="100" y="318" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="9.5" letter-spacing="1.6" fill="#3a4526">EXTRA VIRGIN</text>
+          <text x="100" y="331" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="9.5" letter-spacing="1.6" fill="#3a4526">OLIVE OIL</text>
+          <text x="100" y="344" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="5.5" letter-spacing="1.5" fill="#8f7230">LEBANESE PRODUCT</text>
+        </svg>
+      </div>
+      <div class="product__body">
+        <span class="tag" data-en="Organic · Cold-Pressed">عضوي · عصر على البارد</span>
+        <h3 data-en="Organic Extra Virgin Olive Oil">زيت زيتون بكر ممتاز عضوي</h3>
+        <p data-en="The heart of our house. A golden-green oil with the character of Hasbaya olives — for drizzling, dipping, and every dish that deserves the real thing.">
+          قلبُ بيتنا. زيتٌ ذهبيٌّ مائلٌ إلى الخضرة يحمل شخصية زيتون حاصبيا — للتغميس، وللسلطات، ولكل طبقٍ يستحقّ الأصيل.
+        </p>
+        <ul class="product__list">
+          <li data-en="Extra virgin, organic, cold-pressed">بكر ممتاز، عضوي، معصور على البارد</li>
+          <li data-en="Single-origin from Mimess, Hasbaya">من بساتين ميمس – حاصبيا</li>
+          <li data-en="Dark glass bottle to protect freshness">زجاجة داكنة تحفظ النكهة والنضارة</li>
+        </ul>
+
+        <div class="variants" role="group" aria-label="Sizes">
+          <button type="button" class="variant is-active" data-variant="500ml" data-en="500 ml Bottle">قنينة ٥٠٠ مل</button>
+          <button type="button" class="variant" data-variant="1L" data-en="1 Liter Bottle">قنينة ١ ليتر</button>
+          <button type="button" class="variant" data-variant="tin" data-en="Family Tin">تنكة عائلية</button>
+        </div>
+
+        <div class="product__cta">
+          <button type="button" class="btn add-to-cart" data-add="oil" data-en="Add to Order Bag">أضف إلى سلّة الطلب</button>
+          <a class="btn btn--ghost" data-order="oil" href="#contact" data-en="Quick WhatsApp">طلب سريع</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2: Olive Paste -->
+    <div class="product product--flip reveal" data-product="paste">
+      <div class="product__art product__art--paste">
+        <svg viewBox="0 0 260 300" class="jar" aria-hidden="true">
+          <defs>
+            <linearGradient id="lid" x1="0" x2="1">
+              <stop offset="0" stop-color="#8f7230"/><stop offset=".3" stop-color="#ecd28a"/>
+              <stop offset=".65" stop-color="#b3924a"/><stop offset="1" stop-color="#7a6128"/>
+            </linearGradient>
+            <linearGradient id="paste" x1="0" x2="1">
+              <stop offset="0" stop-color="#4d4a1f"/><stop offset=".4" stop-color="#7c7636"/><stop offset="1" stop-color="#454219"/>
+            </linearGradient>
+            <pattern id="speck" width="14" height="14" patternUnits="userSpaceOnUse">
+              <circle cx="3" cy="4" r="1.3" fill="#a9a25a"/><circle cx="10" cy="9" r="1" fill="#2f2d12"/><circle cx="7" cy="2" r=".8" fill="#c4b86a"/>
+            </pattern>
+          </defs>
+          <rect x="48" y="14" width="164" height="38" rx="8" fill="url(#lid)"/>
+          <rect x="48" y="44" width="164" height="8" rx="3" fill="#7a6128" opacity=".5"/>
+          <rect x="40" y="54" width="180" height="232" rx="26" fill="url(#paste)"/>
+          <rect x="40" y="54" width="180" height="232" rx="26" fill="url(#speck)"/>
+          <rect x="40" y="54" width="180" height="232" rx="26" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3"/>
+          <rect x="40" y="96" width="180" height="150" fill="#fbf7ec"/>
+          <rect x="40" y="96" width="180" height="2.5" fill="#b3924a"/><rect x="40" y="243.500" width="180" height="2.500" fill="#b3924a"/>
+          <circle cx="130" cy="134" r="27" fill="none" stroke="#b3924a" stroke-width="1"/>
+          <svg x="104" y="108" width="52" height="52" class="tree" data-tree="label"></svg>
+          <text x="130" y="188" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="600" font-size="21" letter-spacing="1" fill="#2c3322">OLIVE PASTE</text>
+          <rect x="78" y="197" width="104" height="19" fill="#4a5a2e"/>
+          <text x="130" y="210.500" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="600" font-size="11" letter-spacing="1.5" fill="#fbf7ec">WITH ZAATAR</text>
+          <text x="130" y="233" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="10" fill="#5d6a8a">Heritage in Every Bite</text>
+          <path d="M58 70v200" stroke="#fff" stroke-opacity=".25" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="product__body">
+        <span class="tag tag--gold" data-en="Heritage in Every Bite">تراث في كل لقمة</span>
+        <h3 data-en="Olive Paste with Zaatar">معجون الزيتون بالزعتر</h3>
+        <p data-en="Olives crushed into a rich paste, blended with wild zaatar, garlic and our extra virgin olive oil. One spoonful and the whole village is on your table.">
+          زيتونٌ مهروسٌ في معجونٍ غنيّ، ممزوجٌ بالزعتر البلدي والثوم وزيت زيتوننا البكر الممتاز. ملعقةٌ واحدة، والضيعةُ كلّها على مائدتك.
+        </p>
+        <ul class="product__list">
+          <li data-en="Olives, wild zaatar, garlic, extra virgin olive oil">زيتون، زعتر بلدي، ثوم، زيت زيتون بكر ممتاز</li>
+          <li data-en="Ready to spread, dip or cook with">جاهز للدهن والتغميس والطبخ</li>
+          <li data-en="No preservatives or artificial additives">خالٍ تماماً من المواد الحافظة</li>
+        </ul>
+
+        <div class="variants" role="group" aria-label="Sizes">
+          <button type="button" class="variant is-active" data-variant="250g" data-en="250 g Jar">مرطبان ٢٥٠ غ</button>
+          <button type="button" class="variant" data-variant="500g" data-en="500 g Jar">مرطبان ٥٠٠ غ</button>
+        </div>
+
+        <div class="product__cta">
+          <button type="button" class="btn add-to-cart" data-add="paste" data-en="Add to Order Bag">أضف إلى سلّة الطلب</button>
+          <a class="btn btn--ghost" data-order="paste" href="#contact" data-en="Quick WhatsApp">طلب سريع</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3: Heritage Gift Box -->
+    <div class="product reveal" data-product="gift">
+      <div class="product__art product__art--gift">
+        <svg viewBox="0 0 280 300" class="giftbox" aria-hidden="true">
+          <defs>
+            <linearGradient id="boxBody" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#394723"/><stop offset="1" stop-color="#222b14"/>
+            </linearGradient>
+            <linearGradient id="ribbon" x1="0" x2="1">
+              <stop offset="0" stop-color="#9b7d39"/><stop offset=".5" stop-color="#ecd28a"/><stop offset="1" stop-color="#9b7d39"/>
+            </linearGradient>
+          </defs>
+          <!-- Handle -->
+          <path d="M104 82 C104 42, 176 42, 176 82" fill="none" stroke="url(#ribbon)" stroke-width="5" stroke-linecap="round"/>
+          <!-- Bag / Box -->
+          <rect x="44" y="80" width="192" height="196" rx="16" fill="url(#boxBody)"/>
+          <rect x="54" y="90" width="172" height="176" rx="10" fill="none" stroke="#b3924a" stroke-opacity=".55" stroke-width="1.2"/>
+          <!-- Gold Ribbon -->
+          <rect x="44" y="136" width="192" height="12" fill="url(#ribbon)" opacity=".85"/>
+          <!-- Cream Seal -->
+          <circle cx="140" cy="176" r="46" fill="#fbf7ec" stroke="#b3924a" stroke-width="1.5"/>
+          <svg x="106" y="142" width="68" height="68" class="tree" data-tree="label"></svg>
+          <text x="140" y="246" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11" letter-spacing="2.4" fill="#e3c77d">HERITAGE GIFT SET</text>
+        </svg>
+      </div>
+      <div class="product__body">
+        <span class="tag tag--gold" data-en="Gifting & Occasions">للهدايا والمناسبات</span>
+        <h3 data-en="The Heritage Gift Set">مجموعة الإرث للهدايا</h3>
+        <p data-en="Give a taste of Lebanon that lingers. Our signature extra virgin olive oil paired with olive paste with zaatar, presented in an elegant gift bag with a personalized card.">
+          اهدِ طعماً من لبنان يبقى في الذاكرة. زجاجة زيت الزيتون البكر الممتاز مع مرطبان معجون الزيتون بالزعتر، في كيس هدايا أنيق مع بطاقة إهداء خاصة.
+        </p>
+        <ul class="product__list">
+          <li data-en="500ml Olive Oil + 250g Olive Paste with Zaatar">قنينة زيت ٥٠٠ مل + مرطبان معجون بالزعتر ٢٥٠ غ</li>
+          <li data-en="Luxury gift bag & custom greeting card">كيس هدايا فاخر مع بطاقة إهداء باسمك</li>
+          <li data-en="Available for corporate gifts & wedding favors">متوفرة لهدايا الشركات وتوزيعات المناسبات</li>
+        </ul>
+
+        <div class="variants" role="group" aria-label="Gift Options">
+          <button type="button" class="variant is-active" data-variant="duo" data-en="Classic Duo">ثنائي الإرث</button>
+          <button type="button" class="variant" data-variant="events" data-en="Events / Bulk">توزيعات ومناسبات</button>
+        </div>
+
+        <div class="product__cta">
+          <button type="button" class="btn add-to-cart" data-add="gift" data-en="Add to Order Bag">أضف إلى سلّة الطلب</button>
+          <a class="btn btn--ghost" data-order="gift" href="#contact" data-en="Inquire for Events">استفسار للمناسبات</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Tasting Notes & Care Guide ===== -->
+  <section class="tasting" id="tasting">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="Tasting Profile & Care">بطاقة التذوّق والعناية</p>
+      <h2 class="reveal" data-en="How to taste & keep it at its best">كيف تتذوّقه وتحفظ نضارته</h2>
+    </header>
+
+    <div class="tasting__grid">
+      <div class="tasting__card reveal">
+        <h3 data-en="Flavor Profile">ملامح النكهة</h3>
+        <p class="tasting__sub" data-en="Early-to-mid season Hasbaya olives pressed cold for balance.">زيتون حاصبيا المعصور على البارد لتوازن مثالي بين النعومة والعمق.</p>
+        <div class="meter">
+          <div class="meter__row">
+            <span data-en="Green Fruitiness">الفاكهية الخضراء</span>
+            <strong data-en="Rich">غنيّة</strong>
+          </div>
+          <div class="meter__bar"><span style="--w: 84%"></span></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row">
+            <span data-en="Herbal Aroma">العطر العشبي</span>
+            <strong data-en="Fresh">منعش</strong>
+          </div>
+          <div class="meter__bar"><span style="--w: 78%"></span></div>
+        </div>
+        <div class="meter">
+          <div class="meter__row">
+            <span data-en="Peppery Finish">الحرّاقة اللطيفة</span>
+            <strong data-en="Balanced">متوازنة</strong>
+          </div>
+          <div class="meter__bar"><span style="--w: 65%"></span></div>
+        </div>
+      </div>
+
+      <div class="tasting__card reveal">
+        <h3 data-en="Keeping Your Oil Fresh">كيف تحفظ زيتك طازجاً؟</h3>
+        <ul class="care-list">
+          <li>
+            <span class="care-list__icon">☀</span>
+            <div>
+              <strong data-en="Away from light">بعيداً عن الضوء المباشر</strong>
+              <p data-en="Store in a cool, dark cupboard rather than beside the stove.">احفظه في خزانة باردة ومظلمة بعيداً عن الشمس وحرارة الفرن.</p>
+            </div>
+          </li>
+          <li>
+            <span class="care-list__icon">◈</span>
+            <div>
+              <strong data-en="Seal tightly after use">أغلق الغطاء بإحكام</strong>
+              <p data-en="Oxygen dulls the aroma over time — close the cap right after pouring.">الأكسجين يضعف العطر مع الوقت، فأغلق القنينة مباشرة بعد الاستخدام.</p>
+            </div>
+          </li>
+          <li>
+            <span class="care-list__icon">✦</span>
+            <div>
+              <strong data-en="Best enjoyed fresh">الأجمل وهو طازج</strong>
+              <p data-en="Use it generously every day; extra virgin olive oil shines brightest within its harvest year.">استمتع به يومياً؛ زيت الزيتون البكر الممتاز يبلغ ذروة نكهته خلال عام موسمه.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Quality ===== -->
+  <section class="quality" id="quality">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="Quality">الجودة</p>
+      <h2 class="reveal" data-en="Quality has proof">الجودة إلها دليل</h2>
+      <p class="section-sub reveal" data-en="Not every story is told in words — some are told by results. Laboratory analysis classifies HAEL as Extra Virgin Olive Oil.">مش كل حكاية بتنحكى بالكلام… في حكايات بتشهد عليها النتائج. التحليل المخبري يصنّف زيت HAEL زيتَ زيتون بكراً ممتازاً.</p>
+    </header>
+    <div class="metrics">
+      <article class="metric reveal" style="--v:26%">
+        <span class="metric__val">0.21<small>%</small></span>
+        <h3 data-en="Free acidity">الحموضة الحرّة</h3>
+        <div class="metric__bar"><i></i></div>
+        <p data-en="Extra virgin limit: 0.8%">حدّ البكر الممتاز: 0.8%</p>
+      </article>
+      <article class="metric reveal" style="--v:12.5%">
+        <span class="metric__val">2.5</span>
+        <h3 data-en="Peroxide index">رقم البيروكسيد</h3>
+        <div class="metric__bar"><i></i></div>
+        <p data-en="Extra virgin limit: 20">حدّ البكر الممتاز: 20</p>
+      </article>
+      <article class="metric reveal" style="--v:72%">
+        <span class="metric__val">1.8</span>
+        <h3>K232</h3>
+        <div class="metric__bar"><i></i></div>
+        <p data-en="Extra virgin limit: 2.5">حدّ البكر الممتاز: 2.5</p>
+      </article>
+      <article class="metric reveal" style="--v:82%">
+        <span class="metric__val">0.18</span>
+        <h3>K270</h3>
+        <div class="metric__bar"><i></i></div>
+        <p data-en="Extra virgin limit: 0.22">حدّ البكر الممتاز: 0.22</p>
+      </article>
+    </div>
+    <p class="quality__note reveal" data-en="Lower is better. Chemical analysis of a HAEL olive oil sample, October 2026.">كلّما انخفض الرقم كان أفضل. تحليل كيميائي لعيّنة من زيت HAEL، تشرين الأول ٢٠٢٦.</p>
+  </section>
+
+  <!-- ===== Journey ===== -->
+  <section class="journey" id="journey">
+    <header class="section-head section-head--light">
+      <p class="eyebrow reveal" data-en="The Journey">الرحلة</p>
+      <h2 class="reveal" data-en="From the roots to the table">من الجذور إلى المائدة</h2>
+    </header>
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step__num">01</span>
+        <h3 data-en="The Soil">التراب</h3>
+        <p data-en="It all starts with trees in Mimess cared for organically, the way the land intended.">كلّ شيء يبدأ من أشجارٍ في ميمس نرعاها عضوياً، كما أرادت الأرض.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__num">02</span>
+        <h3 data-en="The Harvest">القطاف</h3>
+        <p data-en="Olives are picked by hand in season, when the fruit is at its best.">يُقطف الزيتون يدوياً في موسمه، حين تكون الثمرة في أفضل حالاتها.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__num">03</span>
+        <h3 data-en="The Press">العصر</h3>
+        <p data-en="Cold-pressed within hours into extra virgin oil that keeps its flavor and aroma.">يُعصر على البارد خلال ساعات ليحفظ نكهته وعطره وفوائده.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step__num">04</span>
+        <h3 data-en="Your Table">مائدتك</h3>
+        <p data-en="Bottled, wrapped, and delivered across Lebanon — heritage, ready to share.">يُعبّأ ويُغلّف ويصل إليك في كل لبنان — إرثٌ جاهزٌ للمشاركة.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== Table / Serving ideas ===== -->
+  <section class="table" id="table">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="At the Table">على المائدة</p>
+      <h2 class="reveal" data-en="Three ways to enjoy it">ثلاث طرقٍ للاستمتاع به</h2>
+    </header>
+    <div class="ideas">
+      <article class="idea reveal">
+        <span class="idea__no">١</span>
+        <h3 data-en="Warm bread, nothing else">خبزٌ ساخن، ولا شيء آخر</h3>
+        <p data-en="Spread the olive paste with zaatar on toasted bread and finish with a thread of olive oil.">ادهن معجون الزيتون بالزعتر على خبزٍ محمّص، واختمه بخيطٍ من زيت الزيتون.</p>
+      </article>
+      <article class="idea reveal">
+        <span class="idea__no">٢</span>
+        <h3 data-en="With labneh">مع اللبنة</h3>
+        <p data-en="A plate of labneh, a spoon of paste in the middle, a generous pour of oil. Breakfast is served.">صحن لبنة، ملعقة معجون في الوسط، وسكبةٌ كريمة من الزيت. الترويقة جاهزة.</p>
+      </article>
+      <article class="idea reveal">
+        <span class="idea__no">٣</span>
+        <h3 data-en="Into the pan">في المقلاة</h3>
+        <p data-en="Toss a spoonful with hot pasta or roasted vegetables for an instant Lebanese twist.">قلّب ملعقةً مع المعكرونة الساخنة أو الخضار المشوية للمسةٍ لبنانية فورية.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials ===== -->
+  <section class="reviews" id="reviews">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="Voices from the Table">آراء زبائننا</p>
+      <h2 class="reveal" data-en="What families say about hael">ما تقوله البيوت عن hael</h2>
+    </header>
+    <div class="reviews__grid">
+      <blockquote class="review reveal">
+        <p data-en="“The moment you open the bottle, you smell Hasbaya. Truly the cleanest olive oil we’ve had on our table in years.”">«من أول لحظة تفتح فيها القنينة بتشم ريحة حاصبيا. فعلاً أنقى وأطيب زيت زيتون دخل بيتنا من سنين.»</p>
+        <footer>
+          <strong data-en="Nadia K.">ناديا ك.</strong>
+          <span data-en="Beirut">بيروت</span>
+        </footer>
+      </blockquote>
+      <blockquote class="review reveal">
+        <p data-en="“The olive paste with zaatar disappeared in two mornings! And the gift bag presentation made it my go-to gift for friends abroad.”">«معجون الزيتون بالزعتر خلص بيومين ترويقة! والتغليف الأنيق خلاه هديتي المفضلة للأصحاب المسافرين.»</p>
+        <footer>
+          <strong data-en="Rami H.">رامي ح.</strong>
+          <span data-en="Mount Lebanon">جبل لبنان</span>
+        </footer>
+      </blockquote>
+      <blockquote class="review reveal">
+        <p data-en="“Authentic village taste with modern care. Fast WhatsApp ordering and careful delivery right to our door.”">«طعم الضيعة الأصيل مع اهتمام عصري بالتفاصيل. الطلب على واتساب سهل والتوصيل مرتب وسريع.»</p>
+        <footer>
+          <strong data-en="Maya S.">مايا س.</strong>
+          <span data-en="Saida">صيدا</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="Questions">أسئلة شائعة</p>
+      <h2 class="reveal" data-en="Everything you may want to know">كل ما قد يخطر ببالك</h2>
+    </header>
+    <div class="faq__list">
+      <details class="faq__item reveal">
+        <summary data-en="Do you deliver to all regions in Lebanon?">هل يتوفّر التوصيل لجميع المناطق اللبنانية؟</summary>
+        <p data-en="Yes! We deliver across Lebanon — Beirut, Mount Lebanon, South, North, and Bekaa. Delivery timing is confirmed directly with you on WhatsApp.">نعم، نوصل إلى كافة المناطق اللبنانية (بيروت، جبل لبنان، الجنوب، الشمال والبقاع)، ونؤكّد معك موعد التوصيل مباشرة عبر واتساب.</p>
+      </details>
+      <details class="faq__item reveal">
+        <summary data-en="Is the olive oil 100% pure and from Mimess, Hasbaya?">هل الزيت نقي ١٠٠٪ ومن موسم ميمس – حاصبيا؟</summary>
+        <p data-en="Absolutely. Every bottle is 100% pure, unblended extra virgin olive oil pressed cold from our groves in Mimess, Hasbaya.">بكل تأكيد. كل قنينة هي زيت زيتون بكر ممتاز نقي ١٠٠٪ غير مخلوط، معصور على البارد من بساتيننا في ميمس – حاصبيا.</p>
+      </details>
+      <details class="faq__item reveal">
+        <summary data-en="Can I order custom gift sets for weddings or corporate events?">هل يمكن طلب توزيعات للأعراس أو هدايا للشركات؟</summary>
+        <p data-en="Yes! We prepare custom-packaged mini bottles, gift bags, and personalized cards for weddings, holidays, and corporate gifting. Message us on WhatsApp for quantities and lead time.">نعم، نجهّز توزيعات خاصة للمناسبات والأعراس وهدايا الشركات مع بطاقات مخصّصة. تواصل معنا عبر واتساب لتحديد الكمية والتفاصيل.</p>
+      </details>
+      <details class="faq__item reveal">
+        <summary data-en="How should I store the Olive Paste with Zaatar after opening?">كيف يُحفظ معجون الزيتون بالزعتر بعد الفتح؟</summary>
+        <p data-en="Keep it refrigerated after opening, and keep a thin layer of extra virgin olive oil on top to preserve its rich flavor and freshness.">يُحفظ في البراد بعد الفتح، ويُفضّل إبقاء طبقة رقيقة من زيت الزيتون على الوجه لحفظ نكهته ونضارته لأطول فترة.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== Instagram ===== -->
+  <section class="insta" id="instagram">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="On Instagram">على إنستغرام</p>
+      <h2 class="reveal" data-en="Moments from our land">لحظات من أرضنا</h2>
+    </header>
+    <div class="tiles reveal">
+      <img src="assets/img/tile-land.jpg" alt="HAEL — From the land. Pure by nature. Mimess – Hasbaya" loading="lazy" width="404" height="404">
+      <img src="assets/img/tile-bottle.jpg" alt="HAEL — Authentic Lebanese Olive Oil" loading="lazy" width="404" height="404">
+      <img src="assets/img/tile-olives.jpg" alt="HAEL — The Origin: Mimess, Hasbaya" loading="lazy" width="404" height="404">
+      <img src="assets/img/tile-taste.jpg" alt="HAEL — Exceptional taste" loading="lazy" width="404" height="404">
+      <img src="assets/img/tile-label.jpg" alt="HAEL — More than just oil" loading="lazy" width="404" height="404">
+      <img src="assets/img/tile-grove.jpg" alt="Mimess – Hasbaya: our land, our pride" loading="lazy" width="404" height="404">
+    </div>
+    <div class="insta__grid">
+      <div class="insta__post reveal">
+        <iframe src="https://www.instagram.com/p/De1vqOJOV18/embed" title="hael on Instagram" loading="lazy" allowfullscreen scrolling="no"></iframe>
+      </div>
+      <div class="insta__post reveal">
+        <iframe src="https://www.instagram.com/p/DfxKjOsI-o2/embed" title="hael on Instagram" loading="lazy" allowfullscreen scrolling="no"></iframe>
+      </div>
+    </div>
+    <p class="insta__more reveal">
+      <a class="btn btn--ghost" href="https://instagram.com/hael_olive_oil_" target="_blank" rel="noopener" dir="ltr">@hael_olive_oil_</a>
+    </p>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="contact" id="contact">
+    <div class="contact__card reveal">
+      <svg class="tree tree--contact" data-tree="plain" aria-hidden="true"></svg>
+      <h2 data-en="From our land to your table">من أرضنا إلى مائدتكم</h2>
+      <p data-en="Order directly via WhatsApp — for your home, or as a gift that says a lot. Straight from Mimess, Hasbaya.">
+        اطلب مباشرةً عبر واتساب — لبيتك، أو هديةً تقول الكثير. مباشرةً من ميمس – حاصبيا.
+      </p>
+      <div class="contact__details">
+        <span data-en="Mimess - Hasbaya, Lebanon">ميمس - حاصبيا، لبنان</span>
+        <i>•</i>
+        <a href="tel:+9613915796" dir="ltr">03 915 796</a>
+        <i>•</i>
+        <a href="https://instagram.com/hael_olive_oil_" target="_blank" rel="noopener" dir="ltr">@hael_olive_oil_</a>
+      </div>
+      <div class="contact__actions">
+        <a class="btn btn--light" data-order="general" href="#" data-en="Chat on WhatsApp">راسلنا على واتساب</a>
+        <a class="btn btn--outline-light" href="https://instagram.com/hael_olive_oil_" target="_blank" rel="noopener" data-en="Follow on Instagram">تابعنا على إنستغرام</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer">
+    <div class="footer__hope">
+      <p class="eyebrow reveal" data-en="A new season">موسمٌ جديد</p>
+      <h2 class="reveal" data-en="Every harvest is a new promise.">كلُّ موسمٍ وعدٌ جديد.</h2>
+      <p class="footer__sub reveal" data-en="As long as the land keeps giving, there is goodness — and there is hope.">ما دامت الأرض تُعطي، يبقى الخير… ويبقى الأمل.</p>
+    </div>
+
+    <svg class="dawn" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="dawnGlow"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".95"/><stop offset=".45" stop-color="#f5cf7a" stop-opacity=".45"/><stop offset="1" stop-color="#f5cf7a" stop-opacity="0"/></radialGradient>
+        <radialGradient id="dawnSun" cx=".4" cy=".35"><stop offset="0" stop-color="#fff6d6"/><stop offset="1" stop-color="#f0c35f"/></radialGradient>
+        <g id="dawnTree">
+          <path d="M0 0 C-1 -8 1 -14 0 -20" stroke="#3d3323" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <ellipse cx="-7" cy="-24" rx="10" ry="8"/><ellipse cx="7" cy="-25" rx="10" ry="8.500"/><ellipse cx="0" cy="-32" rx="9" ry="7.500"/>
+        </g>
+      </defs>
+      <g class="dawn__sun">
+        <circle cx="720" cy="250" r="260" fill="url(#dawnGlow)"/>
+        <g class="dawn__rays"><line x1="720" y1="154" x2="720" y2="100" transform="rotate(0.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(22.5 720 250)"/><line x1="720" y1="154" x2="720" y2="100" transform="rotate(45.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(67.5 720 250)"/><line x1="720" y1="154" x2="720" y2="100" transform="rotate(90.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(112.5 720 250)"/><line x1="720" y1="154" x2="720" y2="100" transform="rotate(135.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(157.5 720 250)"/><line x1="720" y1="154" x2="720" y2="100" transform="rotate(180.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(202.5 720 250)"/><line x1="720" y1="154" x2="720" y2="100" transform="rotate(225.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(247.5 720 250)"/><line x1="720" y1="154" x2="720" y2="100" transform="rotate(270.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(292.5 720 250)"/><line x1="720" y1="154" x2="720" y2="100" transform="rotate(315.0 720 250)"/><line x1="720" y1="154" x2="720" y2="82" transform="rotate(337.5 720 250)"/></g>
+        <circle cx="720" cy="250" r="78" fill="url(#dawnSun)"/>
+      </g>
+      <g class="dawn__birds">
+        <path d="M0 0 q7 -7 14 0 q7 -7 14 0" transform="translate(380 70)"/>
+        <path d="M0 0 q5 -5 10 0 q5 -5 10 0" transform="translate(425 96)"/>
+        <path d="M0 0 q6 -6 12 0 q6 -6 12 0" transform="translate(1010 58)"/>
+      </g>
+      <path fill="#d3d6a8" d="M0 230 C200 170 380 200 560 215 C760 232 900 160 1100 185 C1260 205 1360 180 1440 190 V320 H0Z"/>
+      <g fill="#a9b377"><use href="#dawnTree" transform="translate(150 236) scale(0.55)"/><use href="#dawnTree" transform="translate(330 247) scale(0.5)"/><use href="#dawnTree" transform="translate(980 222) scale(0.55)"/><use href="#dawnTree" transform="translate(1180 244) scale(0.5)"/><use href="#dawnTree" transform="translate(1330 232) scale(0.6)"/></g>
+      <path fill="#8a9a5b" d="M0 260 C180 215 330 250 520 245 C720 240 840 205 1010 228 C1200 252 1320 222 1440 240 V320 H0Z"/>
+      <path fill="#4a5a2e" d="M0 290 C240 250 420 285 640 275 C860 265 1040 245 1240 270 C1330 281 1400 276 1440 272 V320 H0Z"/>
+      <g fill="#33411f"><use href="#dawnTree" transform="translate(90 281) scale(0.95)"/><use href="#dawnTree" transform="translate(430 281) scale(0.8)"/><use href="#dawnTree" transform="translate(1090 258) scale(1)"/><use href="#dawnTree" transform="translate(1290 276) scale(0.85)"/></g>
+      <g class="dawn__sprout" transform="translate(600 300)">
+        <path d="M0 0 C-1 -12 1 -22 0 -34" stroke="#b9c97a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M0 -20 C-12 -22 -18 -32 -17 -40 C-7 -38 0 -30 0 -20Z" fill="#b9c97a"/>
+        <path d="M0 -30 C10 -32 17 -42 16 -50 C6 -48 0 -40 0 -30Z" fill="#cdd98e"/>
+      </g>
+      <path fill="#263018" d="M0 306 C300 286 600 312 900 298 C1150 287 1320 300 1440 294 V321 H0Z"/>
+    </svg>
+
+    <div class="footer__base">
+      <span class="brand__name">hael</span>
+      <p data-en="Organic Extra Virgin Olive Oil · Mimess - Hasbaya, Lebanon">زيت زيتون بكر ممتاز عضوي · ميمس - حاصبيا، لبنان</p>
+      <div class="footer__links">
+        <a href="tel:+9613915796" dir="ltr">03 915 796</a>
+        <span>·</span>
+        <a href="https://instagram.com/hael_olive_oil_" target="_blank" rel="noopener" dir="ltr">@HAEL_OLIVE_OIL_</a>
+      </div>
+      <p class="footer__motto" data-en="From our land, proud of our roots.">من أرضنا، منفتخر بجذورنا.</p>
+      <small>© <span id="year"></span> hael</small>
+    </div>
+  </footer>
+
+  <!-- ===== Order Bag Drawer ===== -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="cartDrawer" aria-hidden="true" aria-labelledby="drawerTitle">
+    <header class="drawer__head">
+      <h3 id="drawerTitle" data-en="Your Order Bag">سلّة الطلب</h3>
+      <button type="button" class="drawer__close" id="cartCloseBtn" aria-label="Close">×</button>
+    </header>
+    <div class="drawer__body">
+      <div class="cart-empty" id="cartEmpty">
+        <p data-en="Your bag is empty. Add your favorite hael products to build a quick WhatsApp order.">سلّتك فارغة حالياً. أضف منتجات hael التي تحبها لتجهيز طلبك عبر واتساب بضغطة واحدة.</p>
+      </div>
+      <ul class="cart-items" id="cartItems"></ul>
+
+      <form class="cart-form" id="cartForm">
+        <label>
+          <span data-en="Your Name">الاسم</span>
+          <input type="text" id="custName" autocomplete="name" placeholder="مثال: كريم منصور" data-ph-en="e.g. Karim Mansour">
+        </label>
+        <label>
+          <span data-en="Delivery Area">منطقة التوصيل</span>
+          <input type="text" id="custArea" placeholder="مثال: بيروت، الحمرا" data-ph-en="e.g. Beirut, Hamra">
+        </label>
+        <label>
+          <span data-en="Gift Note (Optional)">رسالة إهداء أو ملاحظة (اختياري)</span>
+          <textarea id="custNote" rows="2" placeholder="أضف رسالة إهداء أو ملاحظة للطلب..." data-ph-en="Add a gift card message or delivery note..."></textarea>
+        </label>
+      </form>
+    </div>
+    <footer class="drawer__foot">
+      <button type="button" class="btn drawer__send" id="sendOrderBtn" data-en="Send Order on WhatsApp">أرسل الطلب عبر واتساب</button>
+    </footer>
+  </aside>
+
+  <!-- ===== Floating WhatsApp Button & Toast ===== -->
+  <a class="wa-float" data-order="general" href="#" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.5 7.5L3.5 20.5l1.3-4.3a8.5 8.5 0 1 1 15.7-4.4Z"/><path d="M9.5 9.2c.2-.4.5-.4.8-.4h.6c.2 0 .4.1.5.4l.7 1.6c.1.2.1.5-.1.7l-.5.6c-.1.2-.2.3-.1.5.5 1 1.3 1.8 2.3 2.3.2.1.4 0 .5-.1l.6-.5c.2-.2.5-.2.7-.1l1.6.7c.3.1.4.3.4.5v.6c0 .3 0 .6-.4.8-.5.3-1.4.5-2.6.1-1.9-.6-4.2-2.6-5.1-4.8-.4-1.1-.2-2 .1-2.5Z"/></svg>
+  </a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/motion.js"></script>
+</body>
+</html>
