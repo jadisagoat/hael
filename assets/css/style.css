@@ -778,3 +778,12 @@ html[dir="rtl"] .scroll-bar { transform-origin: 100% 50%; }
 .tree .name { fill: #3a342b; letter-spacing: -1px; }
 .tree--contact .wood { stroke: var(--gold-soft); }
 .tree--contact .fruit ellipse, .tree--contact .fruit path { fill: var(--gold-soft) !important; stroke: var(--gold-soft); }
+
+/* ---------- Printed logo (extracted from the packaging photo) ---------- */
+.emblem__logo {
+  display: block; width: 92%; height: auto; transform-origin: 50% 72%;
+  animation: logo-in 1.8s var(--ease) both, sway 9s ease-in-out 1.8s infinite;
+}
+@keyframes logo-in { from { opacity: 0; scale: .9; filter: blur(8px); } to { opacity: 1; scale: 1; filter: blur(0); } }
+.brand__mark { display: block; height: 50px; width: auto; }
+@media (prefers-reduced-motion: reduce) { .emblem__logo { animation: none; } }
