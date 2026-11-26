@@ -233,7 +233,6 @@
     const cs = nums.map(n => { const r = n.getBoundingClientRect(); return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top }; });
     const flat = cs.every(c => Math.abs(c.y - cs[0].y) < 4);
     steps.classList.toggle('has-rail', flat);
-    back.style.display = front.style.display = flat ? '' : 'none';
     if (!flat) {                       // stacked layout: just light each step as it reaches mid-screen
       items.forEach((s, i) => s.classList.toggle('is-lit', nums[i].getBoundingClientRect().top < vh * 0.62));
       return;

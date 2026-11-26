@@ -518,16 +518,43 @@ document.querySelectorAll('[data-quick-add]').forEach(b => {
   const no = document.getElementById('lightboxNo');
   shots.forEach(a => { const i = a.querySelector('img'); i.dataset.altAr = i.alt; });
   let at = 0, lastFocus = null, x0 = null;
+  const ready = {};                      // full-size files already downloaded
+  function preload(i) {
+    const a = shots[(i + shots.length) % shots.length];
+    if (ready[a.href]) return;
+    const im = new Image();
+    im.onload = () => { ready[a.href] = true; };
+    im.src = a.href;
+  }
+  function fit() {                       // size the frame from the known dimensions, before the file arrives
+    const a = shots[at], w = +a.dataset.fullW, h = +a.dataset.fullH;
+    const small = window.innerWidth <= 760;
+    const k = Math.min((Math.min(window.innerWidth, 1132) - 32) / w, (window.innerHeight - (small ? 176 : 144)) / h, 1.25);
+    img.style.width = Math.round(w * k) + 'px';
+    img.style.height = Math.round(h * k) + 'px';
+  }
   function show(i) {
     at = (i + shots.length) % shots.length;
     const a = shots[at], t = a.querySelector('img');
     const text = lang === 'ar' ? t.dataset.altAr : t.dataset.altEn;
-    img.classList.add('is-swap');
-    const next = new Image();
-    next.onload = () => { img.src = next.src; img.alt = text; img.classList.remove('is-swap'); };
-    next.src = a.href;
+    const want = a.href;
+    fit();
+    img.alt = text;
     cap.textContent = text;
     no.textContent = (at + 1) + ' / ' + shots.length;
+    if (ready[want]) { img.src = want; img.classList.remove('is-loading'); }
+    else {
+      // the small photo is already on the page: show it at once, then sharpen when the large one lands
+      img.src = t.currentSrc || t.src;
+      img.classList.add('is-loading');
+      const full = new Image();
+      full.onload = () => {
+        ready[want] = true;
+        if (shots[at].href === want) { img.src = want; img.classList.remove('is-loading'); }
+      };
+      full.src = want;
+    }
+    preload(at + 1); preload(at - 1);
   }
   function open(i) {
     lastFocus = document.activeElement;
@@ -544,6 +571,11 @@ document.querySelectorAll('[data-quick-add]').forEach(b => {
     if (lastFocus) lastFocus.focus();
   }
   shots.forEach((a, i) => a.addEventListener('click', e => { e.preventDefault(); open(i); }));
+  shots.forEach((a, i) => {              // start fetching as soon as the visitor shows interest
+    a.addEventListener('pointerenter', () => preload(i), { once: true });
+    a.addEventListener('touchstart', () => preload(i), { once: true, passive: true });
+  });
+  window.addEventListener('resize', () => { if (!box.hidden) fit(); });
   box.addEventListener('click', e => {
     const b = e.target.closest('[data-lb]');
     if (b) { b.dataset.lb === 'close' ? close() : show(at + (b.dataset.lb === 'next' ? 1 : -1)); return; }

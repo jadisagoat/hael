@@ -1294,3 +1294,12 @@ html[lang="en"] .giftcard__msg { font-size: 1.6rem; }
 .step.is-lit .step__num { background: var(--gold-soft); border-color: var(--gold-soft); color: var(--deep); box-shadow: 0 0 0 6px rgba(227, 199, 125, .16), 0 0 26px rgba(227, 199, 125, .55); scale: 1.08; }
 .step.is-lit h3 { color: var(--gold-soft); }
 .steps.has-rail::before { background: rgba(227, 199, 125, .18); }
+
+/* lightbox: the small photo shows instantly and sharpens when the large file arrives */
+.lightbox__img { object-fit: cover; background: #1c2412; transition: filter .45s; }
+.lightbox__img.is-loading { filter: blur(6px) saturate(1.05); }
+.lightbox__img.is-swap { opacity: 1; }
+
+/* the rail exists only while the steps sit on one line (never on stacked/mobile layouts) */
+.steps > .rail { display: none; }
+.steps.has-rail > .rail { display: block; }
