@@ -49,6 +49,27 @@ const CATALOG = {
   }
 };
 
+/* Olive paste comes in six flavours; every flavour is sold in both jar sizes. */
+const PASTE_FLAVORS = {
+  zaatar: { ar: 'بالزعتر', en: 'With Zaatar' },
+  walnut: { ar: 'بالجوز', en: 'With Walnut' },
+  spicy: { ar: 'حارّ', en: 'Spicy' },
+  sour: { ar: 'حامض', en: 'Sour' },
+  cashew: { ar: 'بالكاجو', en: 'With Cashew' },
+  black: { ar: 'زيتون أسود', en: 'Black Olive' }
+};
+(function () {
+  const sizes = CATALOG.paste.variants, all = {};
+  Object.keys(PASTE_FLAVORS).forEach(f => Object.keys(sizes).forEach(sz => {
+    all[f + '-' + sz] = { ar: PASTE_FLAVORS[f].ar + ' · ' + sizes[sz].ar, en: PASTE_FLAVORS[f].en + ' · ' + sizes[sz].en };
+  }));
+  // bags saved before flavours existed hold plain size keys: they were the zaatar paste
+  Object.keys(sizes).forEach(sz => { all[sz] = all['zaatar-' + sz]; });
+  CATALOG.paste.variants = all;
+  CATALOG.paste.ar = 'معجون الزيتون';
+  CATALOG.paste.en = 'Olive Paste';
+})();
+
 /* ---- Olive tree emblem (drawn procedurally) ---- */
 const NS = 'http://www.w3.org/2000/svg';
 const el = (name, attrs = {}) => {
@@ -295,7 +316,9 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
     const id = btn.dataset.add;
     const card = btn.closest('.product');
     const activeVar = card.querySelector('.variant.is-active');
-    const variant = activeVar ? activeVar.dataset.variant : Object.keys(CATALOG[id].variants)[0];
+    const flavor = card.querySelector('.flavor.is-active');
+    let variant = activeVar ? activeVar.dataset.variant : Object.keys(CATALOG[id].variants)[0];
+    if (flavor) variant = flavor.dataset.flavor + '-' + variant;
 
     const existing = cart.find(i => i.id === id && i.variant === variant);
     if (existing) existing.qty += 1;
@@ -484,3 +507,79 @@ document.querySelectorAll('[data-quick-add]').forEach(b => {
   });
   draw();
 })();
+
+/* ---- Gallery lightbox ---- */
+(function () {
+  const box = document.getElementById('lightbox');
+  const shots = [...document.querySelectorAll('.shotg')];
+  if (!box || !shots.length) return;
+  const img = document.getElementById('lightboxImg');
+  const cap = document.getElementById('lightboxCap');
+  const no = document.getElementById('lightboxNo');
+  shots.forEach(a => { const i = a.querySelector('img'); i.dataset.altAr = i.alt; });
+  let at = 0, lastFocus = null, x0 = null;
+  function show(i) {
+    at = (i + shots.length) % shots.length;
+    const a = shots[at], t = a.querySelector('img');
+    const text = lang === 'ar' ? t.dataset.altAr : t.dataset.altEn;
+    img.classList.add('is-swap');
+    const next = new Image();
+    next.onload = () => { img.src = next.src; img.alt = text; img.classList.remove('is-swap'); };
+    next.src = a.href;
+    cap.textContent = text;
+    no.textContent = (at + 1) + ' / ' + shots.length;
+  }
+  function open(i) {
+    lastFocus = document.activeElement;
+    box.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => box.classList.add('is-open'));
+    show(i);
+    box.querySelector('.lightbox__close').focus();
+  }
+  function close() {
+    box.classList.remove('is-open');
+    document.body.style.overflow = '';
+    setTimeout(() => { box.hidden = true; img.removeAttribute('src'); }, 350);
+    if (lastFocus) lastFocus.focus();
+  }
+  shots.forEach((a, i) => a.addEventListener('click', e => { e.preventDefault(); open(i); }));
+  box.addEventListener('click', e => {
+    const b = e.target.closest('[data-lb]');
+    if (b) { b.dataset.lb === 'close' ? close() : show(at + (b.dataset.lb === 'next' ? 1 : -1)); return; }
+    if (e.target === box) close();
+  });
+  document.addEventListener('keydown', e => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') show(at + 1);
+    if (e.key === 'ArrowLeft') show(at - 1);
+  });
+  box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1));
+  });
+  langBtn.addEventListener('click', () => shots.forEach(a => {
+    const i = a.querySelector('img'); i.alt = lang === 'ar' ? i.dataset.altAr : i.dataset.altEn;
+  }));
+})();
+
+/* ---- Olive paste flavour picker ---- */
+document.querySelectorAll('.flavors').forEach(group => {
+  const card = group.closest('.product');
+  const tag = card.querySelector('.tag');
+  const art = card.querySelector('.product__art');
+  function pick(btn) {
+    group.querySelectorAll('.flavor').forEach(b => b.classList.toggle('is-active', b === btn));
+    if (tag) { tag.dataset.ar = btn.dataset.tagAr; tag.dataset.en = btn.dataset.tagEn; tag.innerHTML = tag.dataset[lang]; }
+    if (art) art.style.setProperty('--flavor', btn.style.getPropertyValue('--fc') + '55');
+    // the drawn jar wears the same label as the real one
+    const band = card.querySelector('.jar__band'), name = card.querySelector('.jar__flavor'), line = card.querySelector('.jar__line');
+    if (band) band.setAttribute('fill', btn.style.getPropertyValue('--fc'));
+    if (name) name.textContent = PASTE_FLAVORS[btn.dataset.flavor].en.toUpperCase();
+    if (line) line.innerHTML = btn.dataset.tagEn;
+  }
+  group.addEventListener('click', e => { const b = e.target.closest('.flavor'); if (b) pick(b); });
+});

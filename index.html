@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/logo.webp" type="image/webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261128">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261202">
 </head>
 <body>
 
@@ -322,23 +322,33 @@
           <circle cx="130" cy="134" r="27" fill="none" stroke="#b3924a" stroke-width="1"/>
           <svg x="104" y="108" width="52" height="52" class="tree" data-tree="label"></svg>
           <text x="130" y="188" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="600" font-size="21" letter-spacing="1" fill="#2c3322">OLIVE PASTE</text>
-          <rect x="78" y="197" width="104" height="19" fill="#4a5a2e"/>
-          <text x="130" y="210.500" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="600" font-size="11" letter-spacing="1.5" fill="#fbf7ec">WITH ZAATAR</text>
-          <text x="130" y="233" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="10" fill="#5d6a8a">Heritage in Every Bite</text>
+          <rect class="jar__band" x="78" y="197" width="104" height="19" fill="#4a5a2e"/>
+          <text x="130" y="210.500" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="600" font-size="11" letter-spacing="1.5" fill="#fbf7ec" class="jar__flavor">WITH ZAATAR</text>
+          <text x="130" y="233" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="10" fill="#5d6a8a" class="jar__line">Heritage in Every Bite</text>
           <path d="M58 70v200" stroke="#fff" stroke-opacity=".25" stroke-width="6" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="product__body">
         <span class="tag tag--gold" data-en="Heritage in Every Bite">تراث في كل لقمة</span>
-        <h3 data-en="Olive Paste with Zaatar">معجون الزيتون بالزعتر</h3>
-        <p data-en="Olives crushed into a rich paste, blended with wild zaatar, garlic and our extra virgin olive oil. One spoonful and the whole village is on your table.">
-          زيتونٌ مهروسٌ في معجونٍ غنيّ، ممزوجٌ بالزعتر البلدي والثوم وزيت زيتوننا البكر الممتاز. ملعقةٌ واحدة، والضيعةُ كلّها على مائدتك.
+        <h3 data-en="Olive Paste, six flavours">معجون الزيتون، بستّ نكهات</h3>
+        <p data-en="Olives crushed into a rich paste with our extra virgin olive oil, in six flavours: from wild zaatar to walnut, cashew and a spicy one. One spoonful and the whole village is on your table.">
+          زيتونٌ مهروسٌ في معجونٍ غنيّ مع زيت زيتوننا البكر الممتاز، بستّ نكهات: من الزعتر البلدي إلى الجوز والكاجو والحارّ. ملعقةٌ واحدة، والضيعةُ كلّها على مائدتك.
         </p>
         <ul class="product__list">
-          <li data-en="Olives, wild zaatar, garlic, extra virgin olive oil">زيتون، زعتر بلدي، ثوم، زيت زيتون بكر ممتاز</li>
+          <li data-en="Zaatar, walnut, spicy, sour, cashew and black olive">زعتر، جوز، حارّ، حامض، كاجو، وزيتون أسود</li>
           <li data-en="Ready to spread, dip or cook with">جاهز للدهن والتغميس والطبخ</li>
           <li data-en="No preservatives or artificial additives">خالٍ تماماً من المواد الحافظة</li>
         </ul>
+
+        <p class="flavors__label" data-en="Choose your flavour">اختر النكهة</p>
+        <div class="flavors" role="group" aria-label="Flavours">
+          <button type="button" class="flavor is-active" data-flavor="zaatar" data-tag-ar="تراث في كل لقمة" data-tag-en="Heritage in Every Bite" style="--fc:#4f7d2f" data-en="With Zaatar">بالزعتر</button>
+          <button type="button" class="flavor" data-flavor="walnut" data-tag-ar="طعمٌ جريء وتقليدي" data-tag-en="Bold &amp; Traditional" style="--fc:#7a4a2b" data-en="With Walnut">بالجوز</button>
+          <button type="button" class="flavor" data-flavor="spicy" data-tag-ar="قليلٌ من الحرّ، كثيرٌ من النكهة" data-tag-en="A Little Heat, A Lot of Flavor" style="--fc:#c0392b" data-en="Spicy">حارّ</button>
+          <button type="button" class="flavor" data-flavor="sour" data-tag-ar="لمسةٌ حامضة من الطبيعة" data-tag-en="A Zesty Touch of Nature" style="--fc:#d98a1f" data-en="Sour">حامض</button>
+          <button type="button" class="flavor" data-flavor="cashew" data-tag-ar="غنيّ وكريمي" data-tag-en="Rich &amp; Creamy" style="--fc:#b5653f" data-en="With Cashew">بالكاجو</button>
+          <button type="button" class="flavor" data-flavor="black" data-tag-ar="غنيّ وأصيل" data-tag-en="Rich &amp; Authentic" style="--fc:#2b2630" data-en="Black Olive">زيتون أسود</button>
+        </div>
 
         <div class="variants" role="group" aria-label="Sizes">
           <button type="button" class="variant is-active" data-variant="250g" data-en="250 g Jar">مرطبان ٢٥٠ غ</button>
@@ -399,6 +409,38 @@
           <a class="btn btn--ghost" data-order="gift" href="#contact" data-en="Inquire for Events">استفسار للمناسبات</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery (real photos) ===== -->
+  <section class="gallery" id="gallery">
+    <header class="section-head">
+      <p class="eyebrow reveal" data-en="Unretouched">بلا رتوش</p>
+      <h2 class="reveal" data-en="hael, as it really is">hael كما هو على الطاولة</h2>
+      <p class="section-sub reveal" data-en="Real photos of our bottles and jars among people. Tap any photo to enlarge it.">صور حقيقية لقنانينا ومرطباناتنا بين الناس. اضغط على أي صورة لتكبيرها.</p>
+    </header>
+    <div class="gallery__grid">
+      <a class="shotg shotg--big reveal" href="assets/img/gallery/g1.webp" data-full-w="1350" data-full-h="1800">
+        <img src="assets/img/gallery/g1-t.webp" alt="سلّة قناني زيت زيتون HAEL البكر الممتاز مع مرطبانات معجون الزيتون" data-alt-en="A basket of HAEL extra virgin olive oil bottles with jars of olive paste" loading="lazy" width="1100" height="1467" style="object-position:50% 60%">
+      </a>
+      <a class="shotg reveal" href="assets/img/gallery/g2.webp" data-full-w="720" data-full-h="1280">
+        <img src="assets/img/gallery/g2-t.webp" alt="صحن لبنة بزيت الزيتون تحيط به مرطبانات معجون الزيتون HAEL بنكهاته" data-alt-en="Labneh with olive oil, surrounded by HAEL olive paste jars in several flavours" loading="lazy" width="640" height="1138" style="object-position:50% 62%">
+      </a>
+      <a class="shotg reveal" href="assets/img/gallery/g3.webp" data-full-w="1350" data-full-h="1800">
+        <img src="assets/img/gallery/g3-t.webp" alt="زيت زيتون بلدي في قناني زجاج كبيرة مع مرطبانات معجون الزيتون" data-alt-en="Fresh olive oil in large glass demijohns beside jars of olive paste" loading="lazy" width="640" height="853" style="object-position:50% 45%">
+      </a>
+      <a class="shotg reveal" href="assets/img/gallery/g4.webp" data-full-w="1350" data-full-h="1800">
+        <img src="assets/img/gallery/g4-t.webp" alt="مرطبانات معجون الزيتون HAEL وكيس الهدايا" data-alt-en="HAEL olive paste jars stacked in front of the gift bag" loading="lazy" width="640" height="853" style="object-position:50% 55%">
+      </a>
+      <a class="shotg reveal" href="assets/img/gallery/g5.webp" data-full-w="1350" data-full-h="1800">
+        <img src="assets/img/gallery/g5-t.webp" alt="تذوّق معجون الزيتون وزيت الزيتون على طاولة HAEL" data-alt-en="Tasting table with HAEL olive paste and olive oil" loading="lazy" width="640" height="853" style="object-position:50% 50%">
+      </a>
+      <a class="shotg shotg--wide reveal" href="assets/img/gallery/g6.webp" data-full-w="1350" data-full-h="1800">
+        <img src="assets/img/gallery/g6-t.webp" alt="قناني زيت زيتون HAEL مصفوفة على طاولة العرض" data-alt-en="HAEL olive oil bottles lined up on the stand" loading="lazy" width="1100" height="1467" style="object-position:50% 48%">
+      </a>
+      <a class="shotg shotg--wide reveal" href="assets/img/gallery/g7.webp" data-full-w="1350" data-full-h="1800">
+        <img src="assets/img/gallery/g7-t.webp" alt="طاولة HAEL كاملة: زيت الزيتون ومعجون الزيتون وشعار العلامة" data-alt-en="The full HAEL stand: olive oil, olive paste and the brand emblem" loading="lazy" width="1100" height="1467" style="object-position:50% 78%">
+      </a>
     </div>
   </section>
 
@@ -875,6 +917,15 @@
     </div>
   </footer>
 
+  <!-- ===== Gallery lightbox ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery" hidden>
+    <button type="button" class="lightbox__btn lightbox__close" data-lb="close" aria-label="Close">×</button>
+    <button type="button" class="lightbox__btn lightbox__prev" data-lb="prev" aria-label="Previous">‹</button>
+    <img class="lightbox__img" id="lightboxImg" alt="">
+    <button type="button" class="lightbox__btn lightbox__next" data-lb="next" aria-label="Next">›</button>
+    <p class="lightbox__cap"><span id="lightboxCap"></span><b id="lightboxNo"></b></p>
+  </div>
+
   <!-- ===== Order Bag Drawer ===== -->
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
   <aside class="drawer" id="cartDrawer" aria-hidden="true" aria-labelledby="drawerTitle">
@@ -914,7 +965,7 @@
   </a>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/js/main.js?v=20261128"></script>
-  <script src="assets/js/motion.js?v=20261128"></script>
+  <script src="assets/js/main.js?v=20261202"></script>
+  <script src="assets/js/motion.js?v=20261202"></script>
 </body>
 </html>

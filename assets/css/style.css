@@ -960,3 +960,65 @@ html[lang="en"] .giftcard p { font-family: var(--latin); font-style: italic; }
   .giftcard { width: min(100%, 19rem); }
 }
 @media (max-width: 480px) { .gift__form { grid-template-columns: 1fr; } }
+
+/* ---------- Gallery ---------- */
+.gallery { background: var(--cream); border-block: 1px solid var(--line); }
+.gallery__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 72rem; margin-inline: auto; }
+.shotg {
+  position: relative; display: block; overflow: hidden; border-radius: 20px; aspect-ratio: 3 / 4; cursor: zoom-in;
+  background: #e9e1c8; box-shadow: 0 26px 40px -34px rgba(38, 48, 24, .7);
+}
+.shotg--big { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.shotg--wide { grid-column: span 2; aspect-ratio: 3 / 2; }
+.shotg img { width: 100%; height: 100%; object-fit: cover; transition: scale 1.2s var(--ease), filter .6s; }
+.shotg::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 253, 247, .35); background: linear-gradient(to top, rgba(38, 48, 24, .35), transparent 45%);
+  opacity: 0; transition: opacity .5s;
+}
+.shotg:hover img, .shotg:focus-visible img { scale: 1.07; }
+.shotg:hover::after, .shotg:focus-visible::after { opacity: 1; }
+@media (max-width: 760px) {
+  .gallery__grid { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+  .shotg { border-radius: 16px; }
+}
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 400; display: grid; place-items: center; padding: 3.5rem 1rem 5.5rem;
+  background: rgba(20, 26, 12, .93); backdrop-filter: blur(6px); opacity: 0; transition: opacity .35s;
+}
+.lightbox[hidden] { display: none; }
+.lightbox.is-open { opacity: 1; }
+.lightbox__img { max-width: min(100%, 1100px); max-height: calc(100vh - 9rem); max-height: calc(100dvh - 9rem); width: auto; height: auto; border-radius: 12px; box-shadow: 0 40px 80px -30px #000; transition: opacity .25s; }
+.lightbox__img.is-swap { opacity: 0; }
+.lightbox__btn {
+  position: absolute; width: 3rem; height: 3rem; border-radius: 50%; border: 1px solid rgba(255, 253, 247, .35);
+  background: rgba(255, 253, 247, .08); color: var(--paper); font-size: 1.8rem; line-height: 1; cursor: pointer;
+  display: grid; place-items: center; transition: background .3s, color .3s;
+}
+.lightbox__btn:hover { background: var(--gold-soft); color: var(--deep); }
+.lightbox__close { top: 1rem; right: 1rem; }
+.lightbox__prev { left: 1rem; top: 50%; translate: 0 -50%; }
+.lightbox__next { right: 1rem; top: 50%; translate: 0 -50%; }
+.lightbox__cap { position: absolute; bottom: 1rem; inset-inline: 1rem; text-align: center; color: rgba(255, 253, 247, .85); font-size: .95rem; }
+.lightbox__cap b { display: block; margin-top: .15rem; color: var(--gold-soft); font-family: var(--latin); font-variant-numeric: lining-nums; font-size: 1.05rem; }
+@media (max-width: 760px) {
+  .lightbox { padding-inline: .6rem; padding-bottom: 6.5rem; }
+  .lightbox__img { max-height: calc(100dvh - 11rem); }
+  .lightbox__btn { width: 2.5rem; height: 2.5rem; background: rgba(20, 26, 12, .55); }
+  .lightbox__prev { left: .8rem; } .lightbox__next { right: .8rem; }
+}
+
+/* ---------- Olive paste flavours ---------- */
+.flavors__label { font-size: .9rem !important; font-weight: 700; color: var(--deep) !important; margin-bottom: .6rem !important; }
+.flavors { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.1rem; }
+.flavor {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .45rem 1rem .45rem .8rem; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--cream); color: var(--ink); font: 500 .95rem var(--body); cursor: pointer;
+  transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease);
+}
+.flavor::before { content: ""; width: .8rem; height: .8rem; border-radius: 50%; background: var(--fc); box-shadow: 0 0 0 2px rgba(255, 253, 247, .9); }
+.flavor:hover { border-color: var(--fc); transform: translateY(-2px); }
+.flavor.is-active { background: var(--fc); border-color: var(--fc); color: #fffdf7; }
+.product__art--paste { transition: box-shadow .6s; box-shadow: inset 0 -140px 120px -110px var(--flavor, transparent); }
+.jar__band { transition: fill .5s; }
