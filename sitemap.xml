@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://hael.site/</loc>
-    <lastmod>2026-11-25</lastmod>
-  </url>
-  <url>
-    <loc>https://hael.site/articles/how-to-choose-olive-oil.html</loc>
-    <lastmod>2026-11-25</lastmod>
-  </url>
-  <url>
-    <loc>https://hael.site/articles/olive-oil-acidity.html</loc>
-    <lastmod>2026-11-25</lastmod>
-  </url>
-  <url>
-    <loc>https://hael.site/articles/olive-oil-storage.html</loc>
-    <lastmod>2026-11-25</lastmod>
-  </url>
-  <url>
-    <loc>https://hael.site/articles/olive-harvest-hasbaya.html</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://hael.site/assets/img/logo.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/heritage.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/jars.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/window.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/tile-taste.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/tile-bottle.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/tile-grove.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/tile-olives.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/tile-land.webp</image:loc></image:image>
+    <image:image><image:loc>https://hael.site/assets/img/tile-label.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hael.site/articles/green-and-black-olives.html</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://hael.site/assets/img/tile-olives.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hael.site/articles/how-to-choose-olive-oil.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://hael.site/assets/img/tile-taste.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hael.site/articles/lebanese-olive-oil.html</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://hael.site/assets/img/tile-land.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hael.site/articles/olive-harvest-hasbaya.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://hael.site/assets/img/tile-grove.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hael.site/articles/olive-oil-acidity.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://hael.site/assets/img/tile-bottle.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://hael.site/articles/olive-oil-storage.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://hael.site/assets/img/jars.webp</image:loc></image:image>
   </url>
 </urlset>
