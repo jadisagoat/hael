@@ -787,3 +787,60 @@ html[dir="rtl"] .scroll-bar { transform-origin: 100% 50%; }
 @keyframes logo-in { from { opacity: 0; scale: .9; filter: blur(8px); } to { opacity: 1; scale: 1; filter: blur(0); } }
 .brand__mark { display: block; height: 50px; width: auto; }
 @media (prefers-reduced-motion: reduce) { .emblem__logo { animation: none; } }
+
+/* ============ SEO additions: hero keyword line, guide, article pages ============ */
+.hero__kw {
+  display: flex; align-items: center; gap: .8rem; margin-bottom: 1.7rem;
+  font-family: var(--body); font-size: .9rem; font-weight: 500; line-height: 1.8; letter-spacing: .06em; color: var(--gold);
+}
+.hero__kw::before { content: ""; flex: none; width: 34px; height: 1px; background: var(--gold); }
+html[lang="en"] .hero__kw { text-transform: uppercase; letter-spacing: .22em; font-size: .75rem; }
+@media (max-width: 900px) { .hero__kw { justify-content: center; } }
+
+.guide { background: var(--cream); }
+.guide__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; max-width: 72rem; margin-inline: auto; }
+.guide__card {
+  display: flex; align-items: center; gap: 1.1rem; padding: 1rem; border-radius: 20px;
+  background: var(--paper); border: 1px solid var(--line); transition: transform .5s var(--ease), border-color .5s, box-shadow .5s;
+}
+.guide__card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 26px 44px -34px rgba(38, 48, 24, .55); }
+.guide__card img { flex: none; width: 92px; height: 92px; border-radius: 14px; object-fit: cover; }
+.guide__card h3 { font-size: 1.22rem; line-height: 1.45; margin-bottom: .25rem; }
+.guide__card p { font-size: .92rem; color: var(--muted); line-height: 1.6; }
+.guide__en { text-align: center; margin-top: 2rem; font-family: var(--latin); font-size: 1.25rem; color: var(--olive); }
+.guide__en a:hover { text-decoration: underline; }
+.footer__guide { max-width: 60rem; margin: 1.2rem auto 0; font-size: .86rem; line-height: 2; color: rgba(255, 253, 247, .55); }
+.footer__guide a { color: rgba(255, 253, 247, .78); }
+.footer__guide a:hover { color: var(--gold-soft); }
+
+.page-article { background: var(--paper); }
+.article { max-width: 46rem; margin-inline: auto; padding: 7.5rem 1.3rem 3rem; }
+.article__crumbs { font-size: .9rem; color: var(--gold); margin-bottom: 1.2rem; }
+.article__crumbs span { opacity: .5; margin-inline: .3rem; }
+.article h1 { font-size: clamp(2rem, 5vw, 3.1rem); margin-bottom: 1.6rem; }
+.article__img { display: block; width: 100%; height: clamp(200px, 38vw, 340px); object-fit: cover; border-radius: 22px; margin-bottom: 2rem; }
+.article__body h2 { font-size: 1.65rem; margin: 2.2rem 0 .6rem; }
+.article__body p, .article__body li { font-size: 1.1rem; line-height: 2; }
+.article__body p { margin-bottom: 1rem; }
+.article__body ul { list-style: disc; padding-inline-start: 1.4rem; margin-bottom: 1rem; }
+.article__body a { color: var(--olive); text-decoration: underline; text-underline-offset: 4px; }
+.article__body table { width: 100%; border-collapse: collapse; margin: 1.2rem 0 1.4rem; font-size: 1.02rem; }
+.article__body th, .article__body td { padding: .7rem .9rem; border-bottom: 1px solid var(--line); text-align: start; }
+.article__body th { color: var(--gold); font-weight: 700; }
+.article__body td:nth-child(2) { font-weight: 700; color: var(--olive); }
+.article__cta {
+  margin: 3rem 0 2.5rem; padding: 2.4rem 1.5rem; border-radius: 26px; text-align: center; color: rgba(255, 253, 247, .8);
+  background: radial-gradient(70% 90% at 50% 0%, #56683a, var(--deep) 75%);
+}
+.article__cta h2 { color: var(--paper); font-size: 1.8rem; margin-bottom: .5rem; }
+.article__cta p { margin-bottom: 1.4rem; }
+.article__more h2 { font-size: 1.5rem; margin-bottom: .6rem; }
+.article__more li { padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.article__more a { color: var(--olive); }
+.article__more a:hover { text-decoration: underline; }
+.article__back { margin-top: 2rem; }
+.article__back a { color: var(--gold); }
+.article__foot { text-align: center; padding: 2.4rem 1rem; background: var(--deep); color: rgba(255, 253, 247, .72); font-size: .95rem; }
+.article__foot .brand__name { display: block; color: var(--paper); font-size: 2.4rem; margin-bottom: .4rem; }
+.article__foot a { color: var(--gold-soft); }
+.page-article .nav .btn--small { display: inline-flex; }

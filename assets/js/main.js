@@ -165,8 +165,8 @@ const placeholders = [...document.querySelectorAll('[data-ph-en]')];
 placeholders.forEach(n => { n.dataset.phAr = n.placeholder; });
 
 const TITLES = {
-  ar: 'hael — زيت زيتون لبناني بكر ممتاز | ميمس - حاصبيا',
-  en: 'hael — Organic Lebanese Olive Oil | Mimess - Hasbaya'
+  ar: 'زيت زيتون لبناني بكر ممتاز | HAEL Olive Oil — ميمس، حاصبيا',
+  en: 'Lebanese Extra Virgin Olive Oil | HAEL — Mimess, Hasbaya'
 };
 const langBtn = document.getElementById('langBtn');
 let lang = 'ar';
