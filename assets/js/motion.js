@@ -164,3 +164,33 @@
   window.addEventListener('resize', () => { buildVine(); request(); });
   window.addEventListener('load', request);
 })();
+
+/* Hero lead writes itself word by word, like a pen moving across the page */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.CSS || !CSS.registerProperty) return;
+  const lead = document.querySelector('.hero__lead');
+  if (!lead) return;
+  const PER_CHAR = 42, START = 500;
+  let mo;
+  function write() {
+    if (mo) mo.disconnect();
+    const words = lead.textContent.trim().split(/\s+/);
+    lead.textContent = '';
+    let t = START;
+    words.forEach((w, i) => {
+      const s = document.createElement('span');
+      const d = Math.max(w.length * PER_CHAR, 90);
+      s.className = 'pen__w';
+      s.textContent = w;
+      s.style.setProperty('--d', d + 'ms');
+      s.style.setProperty('--t', t + 'ms');
+      t += d + 50;
+      if (i) lead.appendChild(document.createTextNode(' '));
+      lead.appendChild(s);
+    });
+    mo.observe(lead, { childList: true });
+  }
+  mo = new MutationObserver(write);   // language switch rewrites the text
+  write();
+})();

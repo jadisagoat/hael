@@ -844,3 +844,119 @@ html[lang="en"] .hero__kw { text-transform: uppercase; letter-spacing: .22em; fo
 .article__foot .brand__name { display: block; color: var(--paper); font-size: 2.4rem; margin-bottom: .4rem; }
 .article__foot a { color: var(--gold-soft); }
 .page-article .nav .btn--small { display: inline-flex; }
+
+/* ---------- Hero lead: written by pen ---------- */
+@property --ink { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+.hero__lead { font-family: "Aref Ruqaa", var(--display); font-size: 1.5rem; line-height: 1.9; color: var(--olive); }
+html[lang="en"] .hero__lead { font-family: var(--latin); font-style: italic; font-size: 1.45rem; line-height: 1.6; }
+.pen__w {
+  display: inline-block; padding-block: .25em; margin-block: -.25em;
+  -webkit-mask-image: linear-gradient(to left, #000 calc(var(--ink) - 14%), transparent var(--ink));
+          mask-image: linear-gradient(to left, #000 calc(var(--ink) - 14%), transparent var(--ink));
+  animation: pen-ink var(--d) linear var(--t) forwards paused;
+}
+html[dir="ltr"] .pen__w {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(var(--ink) - 14%), transparent var(--ink));
+          mask-image: linear-gradient(to right, #000 calc(var(--ink) - 14%), transparent var(--ink));
+}
+.hero__lead.is-in .pen__w { animation-play-state: running; }
+@keyframes pen-ink { to { --ink: 114%; } }
+@media (max-width: 600px) { .hero__lead { font-size: 1.3rem; } }
+
+/* ---------- Recipes ---------- */
+.recipes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5.5rem 1.6rem; max-width: 72rem; margin: 4.5rem auto 0; }
+.recipe {
+  position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 6.2rem 1.6rem 1.6rem; border-radius: 26px; background: var(--cream); border: 1px solid var(--line);
+  transition: background .5s, box-shadow .5s, border-color .5s;
+}
+.recipe:hover { background: #f1e9d2; border-color: rgba(179, 146, 74, .5); box-shadow: 0 34px 50px -40px rgba(38, 48, 24, .6); }
+.recipe__plate {
+  position: absolute; top: -4.2rem; inset-inline-start: 50%; width: 10rem; height: 10rem; margin-inline-start: -5rem;
+  filter: drop-shadow(0 16px 14px rgba(38, 48, 24, .22)); transition: rotate 1.1s var(--ease), scale .7s var(--ease);
+}
+.recipe:hover .recipe__plate { rotate: 14deg; scale: 1.06; }
+.recipe__plate .oil {
+  fill: none; stroke: #d9a531; stroke-linecap: round; stroke-linejoin: round; opacity: .92;
+  stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s ease-in-out .5s;
+}
+.recipe.is-in .oil { stroke-dashoffset: 0; }
+.recipe__time { font-size: .82rem; font-weight: 700; letter-spacing: .04em; color: var(--gold); margin-bottom: .3rem; }
+.recipe h3 { font-size: 1.6rem; margin-bottom: .5rem; }
+.recipe__ing { font-size: .96rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
+.recipe__how { width: 100%; margin-bottom: 1.1rem; border-top: 1px solid var(--line); }
+.recipe__how summary {
+  list-style: none; cursor: pointer; padding: .8rem 0 .2rem; font-weight: 700; color: var(--olive);
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+}
+.recipe__how summary::-webkit-details-marker { display: none; }
+.recipe__how summary::after { content: "+"; font-size: 1.2rem; line-height: 1; color: var(--gold); transition: rotate .4s var(--ease); }
+.recipe__how[open] summary::after { rotate: 45deg; }
+.recipe__how ol { list-style: none; counter-reset: step; text-align: start; padding: .6rem 0 0; margin: 0; }
+.recipe__how li {
+  counter-increment: step; position: relative; padding-inline-start: 2.3rem; margin-bottom: .7rem;
+  font-size: .97rem; line-height: 1.75; color: var(--ink);
+}
+.recipe__how li::before {
+  content: counter(step); position: absolute; inset-inline-start: 0; top: .15rem; width: 1.6rem; height: 1.6rem;
+  display: grid; place-items: center; border-radius: 50%; background: var(--olive); color: var(--paper);
+  font-family: var(--latin); font-size: .95rem; font-variant-numeric: lining-nums;
+}
+.recipe__add {
+  margin-top: auto; padding: .55rem 1.2rem; border-radius: 999px; border: 1px solid var(--olive); background: transparent;
+  color: var(--olive); font: 700 .9rem var(--body); cursor: pointer; transition: background .3s, color .3s, transform .3s var(--ease);
+}
+.recipe__add:hover { background: var(--olive); color: var(--paper); transform: translateY(-2px); }
+@media (max-width: 1000px) { .recipes { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .recipes { grid-template-columns: 1fr; max-width: 26rem; } }
+
+/* ---------- Gift card writer ---------- */
+.gift {
+  position: relative; overflow: hidden; color: var(--paper);
+  background: radial-gradient(60rem 30rem at 85% 0%, rgba(179, 146, 74, .22), transparent 60%), radial-gradient(40rem 26rem at 0% 100%, rgba(120, 140, 70, .25), transparent 65%), var(--deep);
+}
+.gift__inner { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; max-width: 72rem; margin-inline: auto; }
+.gift .eyebrow { color: var(--gold-soft); }
+.gift h2 { color: var(--paper); margin-bottom: 1rem; }
+.gift__lead { color: rgba(255, 253, 247, .78); font-size: 1.08rem; margin-bottom: 1.6rem; max-width: 36rem; }
+.occasions { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 1.5rem; }
+.occasion {
+  padding: .5rem 1.15rem; border-radius: 999px; border: 1px solid rgba(227, 199, 125, .45); background: transparent;
+  color: var(--gold-soft); font: 500 .95rem var(--body); cursor: pointer; transition: background .3s, color .3s, border-color .3s;
+}
+.occasion:hover, .occasion.is-active { background: var(--gold-soft); border-color: var(--gold-soft); color: var(--deep); }
+.gift__form { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-bottom: 1.5rem; }
+.gift__form label { display: flex; flex-direction: column; gap: .35rem; font-size: .9rem; font-weight: 500; color: var(--gold-soft); }
+.gift__wide { grid-column: 1 / -1; }
+.gift__form input, .gift__form textarea {
+  width: 100%; padding: .75rem 1rem; border-radius: 14px; border: 1px solid rgba(255, 253, 247, .2);
+  background: rgba(255, 253, 247, .07); color: var(--paper); font: 400 1rem var(--body); resize: vertical; outline: none;
+  transition: border-color .3s, background .3s;
+}
+.gift__form input::placeholder, .gift__form textarea::placeholder { color: rgba(255, 253, 247, .42); }
+.gift__form input:focus, .gift__form textarea:focus { border-color: var(--gold-soft); background: rgba(255, 253, 247, .12); }
+.gift__cta { display: flex; flex-wrap: wrap; gap: .8rem; }
+.gift__stage { display: grid; place-items: center; padding: 1rem; }
+.giftcard {
+  position: relative; width: min(100%, 23rem); aspect-ratio: 5 / 6.4; padding: 2.2rem 2rem 1.6rem; border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; color: var(--deep);
+  background: linear-gradient(160deg, #fffdf7, #f4ecd6); rotate: -3deg;
+  box-shadow: 0 40px 60px -30px rgba(0, 0, 0, .65), inset 0 0 0 1px rgba(179, 146, 74, .5), inset 0 0 0 9px #fffdf7, inset 0 0 0 10px rgba(179, 146, 74, .35);
+  transition: rotate .8s var(--ease), translate .8s var(--ease);
+}
+.gift__stage:hover .giftcard { rotate: 0deg; translate: 0 -8px; }
+.giftcard__ribbon { position: absolute; top: -8px; inset-inline-end: 2.2rem; width: 26px; height: 70px; background: linear-gradient(90deg, #9b7d39, #ecd28a, #9b7d39); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%); }
+.giftcard img { width: 4.6rem; height: auto; margin-bottom: .8rem; }
+.giftcard p { font-family: "Aref Ruqaa", var(--display); margin: 0; overflow-wrap: anywhere; }
+html[lang="en"] .giftcard p { font-family: var(--latin); font-style: italic; }
+.giftcard__to { font-size: 1.35rem; color: var(--olive); margin-bottom: .7rem !important; }
+.giftcard__msg { flex: 1; display: grid; place-items: center; font-size: 1.55rem; line-height: 1.75; }
+.giftcard__from { font-size: 1.3rem; color: var(--olive); align-self: flex-end; margin-top: .6rem !important; }
+.giftcard .is-ghost { opacity: .38; }
+.giftcard__brand { margin-top: .9rem; padding-top: .7rem; width: 100%; border-top: 1px solid rgba(179, 146, 74, .4); font-family: var(--latin); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+@media (max-width: 900px) {
+  .gift__inner { grid-template-columns: 1fr; }
+  .gift__stage { order: -1; }
+  .giftcard { width: min(100%, 19rem); }
+}
+@media (max-width: 480px) { .gift__form { grid-template-columns: 1fr; } }

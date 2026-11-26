@@ -407,3 +407,80 @@ if ('IntersectionObserver' in window) {
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---- Recipes: one-tap add to the order bag ---- */
+function quickAdd(id, variant) {
+  const v = variant || Object.keys(CATALOG[id].variants)[0];
+  const existing = cart.find(i => i.id === id && i.variant === v);
+  if (existing) existing.qty += 1;
+  else cart.push({ id, variant: v, qty: 1 });
+  saveCart();
+  renderCart();
+  showToast(lang === 'ar' ? 'تمت الإضافة إلى سلّة الطلب ✓' : 'Added to your order bag ✓');
+}
+document.querySelectorAll('[data-quick-add]').forEach(b => {
+  b.addEventListener('click', () => quickAdd(b.dataset.quickAdd));
+});
+
+/* ---- Gift card writer ---- */
+(function () {
+  const to = document.getElementById('giftTo');
+  if (!to) return;
+  const from = document.getElementById('giftFrom');
+  const msg = document.getElementById('giftMsg');
+  const cTo = document.getElementById('cardTo');
+  const cMsg = document.getElementById('cardMsg');
+  const cFrom = document.getElementById('cardFrom');
+  const chips = [...document.querySelectorAll('.occasion')];
+  const T = {
+    ar: { to: 'إلى ', toGhost: 'إلى من تحبّ', from: '— ', fromGhost: '— اسمك', msgGhost: 'من أرضنا، إلى مائدتكم.' },
+    en: { to: 'To ', toGhost: 'To someone you love', from: '— ', fromGhost: '— Your name', msgGhost: 'From our land to your table.' }
+  };
+  function put(node, value, ghost) {
+    node.textContent = value || ghost;
+    node.classList.toggle('is-ghost', !value);
+  }
+  function draw() {
+    const t = T[lang];
+    put(cTo, to.value.trim() && t.to + to.value.trim(), t.toGhost);
+    put(cMsg, msg.value.trim(), t.msgGhost);
+    put(cFrom, from.value.trim() && t.from + from.value.trim(), t.fromGhost);
+  }
+  [to, from, msg].forEach(n => n.addEventListener('input', () => {
+    if (n === msg) chips.forEach(c => c.classList.remove('is-active'));
+    draw();
+  }));
+  chips.forEach(c => c.addEventListener('click', () => {
+    chips.forEach(x => x.classList.toggle('is-active', x === c));
+    msg.value = lang === 'ar' ? c.dataset.msgAr : c.dataset.msgEn;
+    draw();
+  }));
+  langBtn.addEventListener('click', () => {
+    const active = chips.find(c => c.classList.contains('is-active'));
+    if (active) msg.value = lang === 'ar' ? active.dataset.msgAr : active.dataset.msgEn;
+    draw();
+  });
+  function cardLines() {
+    const ar = lang === 'ar', out = [];
+    const active = chips.find(c => c.classList.contains('is-active'));
+    if (active) out.push((ar ? 'المناسبة: ' : 'Occasion: ') + active.textContent.trim());
+    if (to.value.trim()) out.push((ar ? 'إلى: ' : 'To: ') + to.value.trim());
+    if (msg.value.trim()) out.push((ar ? 'الرسالة: ' : 'Message: ') + msg.value.trim());
+    if (from.value.trim()) out.push((ar ? 'من: ' : 'From: ') + from.value.trim());
+    return out;
+  }
+  document.getElementById('giftSend').addEventListener('click', () => {
+    const ar = lang === 'ar', card = cardLines();
+    const lines = [ar ? 'مرحباً hael 🌿، أودّ طلب مجموعة الإرث للهدايا.' : 'Hello hael 🌿, I would like to order the Heritage Gift Set.'];
+    if (card.length) lines.push('', ar ? 'بطاقة الإهداء:' : 'Gift card:', ...card);
+    window.open(waUrl(lines.join('\n')), '_blank', 'noopener');
+  });
+  document.getElementById('giftBag').addEventListener('click', () => {
+    const note = document.getElementById('custNote');
+    const card = cardLines();
+    if (note && card.length) note.value = card.join(' | ');
+    quickAdd('gift', 'duo');
+    openDrawer();
+  });
+  draw();
+})();
