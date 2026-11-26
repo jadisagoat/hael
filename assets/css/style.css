@@ -864,7 +864,8 @@ html[dir="ltr"] .pen__w {
 @media (max-width: 600px) { .hero__lead { font-size: 1.3rem; } }
 
 /* ---------- Recipes ---------- */
-.recipes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5.5rem 1.6rem; max-width: 72rem; margin: 4.5rem auto 0; }
+.recipes { display: flex; flex-wrap: wrap; justify-content: center; gap: 8rem 1.4rem; max-width: 84rem; margin: 8.5rem auto 0; }
+.recipe { flex: 0 1 calc((100% - 4.2rem) / 4); }
 .recipe {
   position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
   padding: 6.2rem 1.6rem 1.6rem; border-radius: 26px; background: var(--cream); border: 1px solid var(--line);
@@ -877,8 +878,8 @@ html[dir="ltr"] .pen__w {
 }
 .recipe:hover .recipe__plate { rotate: 14deg; scale: 1.06; }
 .recipe__plate .oil {
-  fill: none; stroke: #d9a531; stroke-linecap: round; stroke-linejoin: round; opacity: .92;
-  stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s ease-in-out .5s;
+  fill: none; stroke: #e2bb34; stroke-linecap: round; stroke-linejoin: round; opacity: .9;
+  stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.9s ease-in-out 1.5s;
 }
 .recipe.is-in .oil { stroke-dashoffset: 0; }
 .recipe__time { font-size: .82rem; font-weight: 700; letter-spacing: .04em; color: var(--gold); margin-bottom: .3rem; }
@@ -907,8 +908,8 @@ html[dir="ltr"] .pen__w {
   color: var(--olive); font: 700 .9rem var(--body); cursor: pointer; transition: background .3s, color .3s, transform .3s var(--ease);
 }
 .recipe__add:hover { background: var(--olive); color: var(--paper); transform: translateY(-2px); }
-@media (max-width: 1000px) { .recipes { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .recipes { grid-template-columns: 1fr; max-width: 26rem; } }
+@media (max-width: 1250px) { .recipes { max-width: 48rem; } .recipe { flex-basis: calc((100% - 1.4rem) / 2); } }
+@media (max-width: 640px) { .recipes { max-width: 26rem; } .recipe { flex-basis: 100%; } }
 
 /* ---------- Gift card writer ---------- */
 .gift {
@@ -1022,3 +1023,274 @@ html[lang="en"] .giftcard p { font-family: var(--latin); font-style: italic; }
 .flavor.is-active { background: var(--fc); border-color: var(--fc); color: #fffdf7; }
 .product__art--paste { transition: box-shadow .6s; box-shadow: inset 0 -140px 120px -110px var(--flavor, transparent); }
 .jar__band { transition: fill .5s; }
+
+/* ---------- Recipes: the bottle pours, the plates glow ---------- */
+.recipe__plate { z-index: 1; }
+.recipe__halo {
+  position: absolute; top: -5.7rem; left: 50%; width: 13rem; height: 13rem; margin-left: -6.5rem; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(232, 184, 62, .6) 42%, rgba(232, 184, 62, .22) 58%, transparent 72%);
+  opacity: 0; transition: opacity 1.2s 1.6s;
+}
+.recipe.is-in .recipe__halo { opacity: 1; animation: plate-glow 3.4s ease-in-out 2.8s infinite; }
+@keyframes plate-glow { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: .45; scale: .94; } }
+.recipe__shine {
+  position: absolute; top: -4.2rem; left: 50%; width: 10rem; height: 10rem; margin-left: -5rem; border-radius: 50%;
+  overflow: hidden; pointer-events: none; z-index: 2;
+}
+.recipe__shine::before {
+  content: ""; position: absolute; top: -30%; left: 0; width: 34%; height: 160%; rotate: 24deg; translate: -260% 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .7), transparent);
+}
+.recipe.is-in .recipe__shine::before { animation: plate-shine 5.5s ease-in-out 2.2s infinite; }
+@keyframes plate-shine { 0% { translate: -260% 0; } 22%, 100% { translate: 420% 0; } }
+.pour { position: absolute; top: -6.6rem; left: 50%; width: 0; height: 0; pointer-events: none; }
+.pour__bottle {
+  position: absolute; left: -4px; top: -16px; z-index: 4; transform-origin: 4px 16px; scale: 1.7; opacity: 0; overflow: visible;
+  filter: drop-shadow(0 10px 8px rgba(38, 48, 24, .35));
+}
+/* the stream: clear oil with a line of light in it, wavering slightly as it falls */
+.pour__stream { position: absolute; left: -5px; top: 1px; width: 10px; height: 7.3rem; z-index: 3; filter: url(#oilWobble); }
+.pour__stream b {
+  position: absolute; inset: 0; opacity: 0; transform-origin: 50% 0;
+  clip-path: polygon(8% 0, 92% 0, 66% 100%, 34% 100%);
+  background: linear-gradient(90deg,
+    rgba(128, 104, 0, .78) 0, rgba(196, 170, 22, .8) 22%, rgba(255, 252, 214, .9) 37%, rgba(226, 204, 58, .78) 50%,
+    rgba(204, 178, 28, .8) 76%, rgba(120, 98, 0, .8) 100%);
+}
+.pour__splash {
+  position: absolute; left: -.8rem; top: 6.75rem; width: 1.6rem; height: 1rem; z-index: 3; border-radius: 50%; opacity: 0;
+  border: 1.5px solid rgba(255, 250, 200, .85); box-shadow: 0 0 0 4px rgba(255, 250, 200, .16);
+}
+/* oil on the plate: transparent, so it tints the food under it instead of covering it */
+.pour__pool, .pour__gloss {
+  position: absolute; left: -2.3rem; top: 5.6rem; width: 4.6rem; height: 3.7rem; z-index: 2; opacity: 0; scale: .1; display: none;
+  border-radius: 46% 54% 43% 57% / 55% 45% 56% 44%;
+  transition: opacity 1.6s ease 1.4s, scale 0s 3s;
+}
+.pour__pool {
+  mix-blend-mode: multiply; filter: url(#oilEdge);
+  background: radial-gradient(ellipse at 50% 46%, rgba(246, 222, 96, .92) 0, rgba(236, 208, 70, .9) 55%, rgba(206, 172, 34, .95) 88%, rgba(190, 150, 20, .7) 100%);
+}
+.pour__gloss {
+  background:
+    radial-gradient(ellipse 20% 12% at 31% 29%, rgba(255, 255, 246, .95), transparent 100%),
+    radial-gradient(ellipse 9% 6% at 45% 22%, rgba(255, 255, 246, .7), transparent 100%),
+    radial-gradient(ellipse 13% 7% at 66% 70%, rgba(255, 255, 240, .45), transparent 100%),
+    radial-gradient(ellipse at 50% 50%, transparent 62%, rgba(255, 244, 170, .28) 80%, transparent 94%);
+  filter: blur(.4px);
+}
+.recipe--photo .pour__pool, .recipe--photo .pour__gloss { display: block; }
+.recipe.is-pouring .pour__pool, .recipe.is-oiled:hover .pour__pool { opacity: 1; scale: 1; transition: opacity .6s ease 1.5s, scale 2.5s cubic-bezier(.16, .7, .3, 1) 1.5s; }
+.recipe.is-pouring .pour__gloss, .recipe.is-oiled:hover .pour__gloss { opacity: 1; scale: 1; transition: opacity 1.2s ease 2.1s, scale 2.5s cubic-bezier(.16, .7, .3, 1) 1.5s; }
+.recipe.is-pouring .pour__bottle { animation: pour-bottle 4.2s cubic-bezier(.45, 0, .3, 1) both; }
+.recipe.is-pouring .pour__stream b { animation: pour-stream 4.2s linear both; }
+.recipe.is-pouring .pour__splash { animation: pour-splash .7s ease-out 1.55s 3; }
+/* drawn plates: the golden thread appears only once the oil is poured, and stays */
+.recipe.is-in .oil { stroke-dashoffset: 1; }
+.recipe.is-pouring .oil, .recipe.is-oiled .oil { stroke-dashoffset: 0; }
+@keyframes pour-bottle {
+  0% { opacity: 0; transform: translate(60px, -46px) rotate(38deg); }
+  16% { opacity: 1; transform: translate(0, 0) rotate(26deg); }
+  30% { opacity: 1; transform: translate(0, 0) rotate(-16deg); }
+  68% { opacity: 1; transform: translate(0, 0) rotate(-30deg); }
+  82% { opacity: 1; transform: translate(0, 0) rotate(22deg); }
+  100% { opacity: 0; transform: translate(60px, -46px) rotate(38deg); }
+}
+@keyframes pour-stream {
+  0%, 29% { opacity: 1; clip-path: polygon(8% 0, 92% 0, 80% 0, 20% 0); transform: scaleX(.5); }
+  37% { opacity: 1; clip-path: polygon(8% 0, 92% 0, 66% 100%, 34% 100%); transform: scaleX(1); }
+  50% { transform: scaleX(1.1); }
+  62% { opacity: 1; clip-path: polygon(8% 0, 92% 0, 66% 100%, 34% 100%); transform: scaleX(.8); }
+  69% { opacity: 1; clip-path: polygon(30% 0, 70% 0, 60% 100%, 40% 100%); transform: scaleX(.4); }
+  75% { opacity: 1; clip-path: polygon(40% 100%, 60% 100%, 60% 100%, 40% 100%); transform: scaleX(.3); }
+  76%, 100% { opacity: 0; }
+}
+@keyframes pour-splash { 0% { opacity: .9; scale: .3; } 100% { opacity: 0; scale: 1.7; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pour, .recipe__shine { display: none; }
+  .recipe.is-in .oil { stroke-dashoffset: 0; }
+  .recipe.is-in .recipe__halo { animation: none; }
+}
+
+/* ---------- Hot dish: steam rising from the pan ---------- */
+.steam { position: absolute; top: -8.4rem; left: 50%; width: 6rem; height: 6rem; margin-left: -3rem; z-index: 2; pointer-events: none; overflow: visible; filter: blur(2.5px); }
+.steam path { fill: none; stroke: rgba(255, 255, 255, .95); stroke-width: 5; stroke-linecap: round; opacity: 0; }
+.recipe.is-in .steam path { animation: steam 3.6s ease-in-out 4s infinite; }
+.recipe.is-in .steam path:nth-child(2) { animation-delay: 5.1s; }
+.recipe.is-in .steam path:nth-child(3) { animation-delay: 6.2s; }
+@keyframes steam {
+  0% { opacity: 0; translate: 0 26px; scale: .8 .7; }
+  35% { opacity: .85; }
+  100% { opacity: 0; translate: 6px -22px; scale: 1.15 1.1; }
+}
+.recipe--hot .recipe__plate { filter: drop-shadow(0 16px 14px rgba(38, 48, 24, .3)) saturate(1.08); }
+@media (prefers-reduced-motion: reduce) { .steam { display: none; } }
+
+/* ---------- Reviews: written by hand ---------- */
+.review {
+  position: relative; padding: 3.2rem 2rem 1.6rem; border-radius: 6px 22px 22px 22px;
+  background: linear-gradient(165deg, #fffdf7, #f7f0dc); box-shadow: 0 26px 40px -34px rgba(38, 48, 24, .6);
+  transition: rotate .6s var(--ease), translate .6s var(--ease), box-shadow .6s;
+}
+.review:nth-child(odd) { rotate: -1.2deg; }
+.review:nth-child(even) { rotate: 1deg; translate: 0 .6rem; }
+.review:hover { rotate: 0deg; translate: 0 -6px; box-shadow: 0 34px 48px -32px rgba(38, 48, 24, .7); }
+.review::before {
+  content: "\201D"; position: absolute; top: .2rem; inset-inline-start: 1.4rem;
+  font-family: var(--latin); font-size: 6rem; line-height: 1; color: var(--gold); opacity: .55;
+}
+.review p { font-family: "Aref Ruqaa", var(--display); font-size: 1.5rem; line-height: 1.95; color: var(--deep); }
+html[lang="en"] .review p { font-family: var(--latin); font-style: italic; font-size: 1.35rem; line-height: 1.6; }
+.review footer { border-top: 1px dashed rgba(179, 146, 74, .55); }
+.review strong { font-family: "Aref Ruqaa", var(--display); font-size: 1.35rem; font-weight: 400; color: var(--olive); }
+.review strong::before { content: "— "; color: var(--gold); }
+html[lang="en"] .review strong { font-family: var(--latin); font-style: italic; }
+/* clearer review text: Amiri (naskh) reads more easily than ruqaa at this size */
+.review p { font-family: var(--display); font-style: italic; font-size: 1.42rem; line-height: 1.85; color: var(--ink); }
+
+/* ---------- Article reader ---------- */
+.reader {
+  position: fixed; inset: 0; z-index: 380; display: flex; justify-content: center; align-items: flex-end;
+  background: rgba(20, 26, 12, .72); backdrop-filter: blur(7px); opacity: 0; transition: opacity .4s;
+}
+.reader[hidden] { display: none; }
+.reader.is-open { opacity: 1; }
+.reader__sheet {
+  position: relative; width: min(100%, 52rem); height: calc(100% - 2.2rem); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--paper); border-radius: 28px 28px 0 0; box-shadow: 0 -30px 80px -20px rgba(0, 0, 0, .6);
+  translate: 0 60px; transition: translate .6s var(--ease);
+}
+.reader.is-open .reader__sheet { translate: 0 0; }
+.reader__bar {
+  position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: .9rem; padding: .8rem 1.2rem;
+  background: rgba(255, 253, 247, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+}
+.reader__close {
+  width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid var(--line); background: var(--cream); color: var(--deep);
+  font-size: 1.6rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .3s, color .3s, rotate .4s var(--ease);
+}
+.reader__close:hover { background: var(--deep); color: var(--gold-soft); rotate: 90deg; }
+.reader__label { font-weight: 700; color: var(--gold); letter-spacing: .04em; }
+.reader__progress { position: absolute; bottom: -1px; inset-inline-start: 0; height: 3px; width: 100%; background: linear-gradient(90deg, var(--olive), var(--gold)); transform-origin: 100% 50%; scale: 0 1; }
+html[dir="ltr"] .reader__progress, .reader__sheet[dir="ltr"] .reader__progress { transform-origin: 0 50%; }
+.reader__hero { position: relative; margin: 0; height: clamp(220px, 42vw, 380px); overflow: hidden; background: var(--deep); }
+.reader__hero img { width: 100%; height: 100%; object-fit: cover; opacity: .82; scale: 1.08; transition: scale 6s ease-out; }
+.reader.is-open .reader__hero img { scale: 1; }
+.reader__hero figcaption {
+  position: absolute; inset: 0; display: flex; align-items: flex-end; padding: clamp(1.2rem, 4vw, 2.4rem);
+  background: linear-gradient(to top, rgba(20, 26, 12, .88), rgba(20, 26, 12, .15) 65%);
+}
+.reader__hero h2 { color: var(--paper); font-size: clamp(1.7rem, 4.4vw, 2.7rem); line-height: 1.45; margin: 0; }
+.reader__content { padding: clamp(1.4rem, 4vw, 2.6rem) clamp(1.2rem, 5vw, 3.4rem) .6rem; }
+.reader__content > p:first-child { font-size: 1.25rem; color: var(--deep); }
+.reader__content h2 { position: relative; padding-inline-start: 1rem; }
+.reader__content h2::before { content: ""; position: absolute; inset-inline-start: 0; top: .5em; bottom: .35em; width: 3px; border-radius: 2px; background: var(--gold); }
+.reader__more { padding: .6rem clamp(1.2rem, 5vw, 3.4rem) 0; }
+.reader__more h3 { font-size: 1.3rem; margin-bottom: .8rem; color: var(--gold); }
+.reader__more ul { display: flex; flex-wrap: wrap; gap: .55rem; }
+.reader__more a {
+  display: inline-block; padding: .55rem 1.1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--cream);
+  color: var(--deep); font-size: .98rem; transition: background .3s, color .3s, border-color .3s;
+}
+.reader__more a:hover { background: var(--olive); border-color: var(--olive); color: var(--paper); }
+.reader__cta { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; padding: 2.2rem 1.2rem 3rem; }
+.reader__sheet.is-loading .reader__content { min-height: 40vh; opacity: .4; }
+@media (max-width: 640px) { .reader__sheet { height: calc(100% - 1rem); border-radius: 20px 20px 0 0; } }
+
+/* WhatsApp button in WhatsApp's own green, so visitors recognise it at a glance */
+.wa-float { background: #25d366; border-color: #25d366; color: #fff; box-shadow: 0 14px 28px -10px rgba(18, 140, 70, .65); }
+.wa-float:hover { background: #1ebe5a; border-color: #1ebe5a; color: #fff; }
+.wa-float svg { width: 30px; height: 30px; stroke-width: 1.9; }
+.wa-float::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; pointer-events: none;
+  animation: wa-ring 2.8s ease-out infinite;
+}
+@keyframes wa-ring { 0% { scale: 1; opacity: .7; } 70%, 100% { scale: 1.6; opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .wa-float::after { animation: none; opacity: 0; } }
+
+/* ---------- Gift card: a finer card ---------- */
+.giftcard {
+  width: min(100%, 24.5rem); aspect-ratio: 5 / 6.7; padding: 3.4rem 2.6rem 2.2rem; border-radius: 14px; overflow: hidden;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg transform=''%3E%3Cpath d='M3 52 V20 Q3 3 20 3 H52' fill='none' stroke='%23b3924a' stroke-width='1.3'/%3E%3Cpath d='M9 44 V22 Q9 9 22 9 H44' fill='none' stroke='%23b3924a' stroke-width='.6' opacity='.7'/%3E%3Cpath d='M13 13 q13 -1 16 12 q-13 1 -16 -12z' fill='%237d8f4e'/%3E%3Cpath d='M13 13 l12 10' stroke='%23fffdf7' stroke-width='.6'/%3E%3Ccircle cx='33' cy='16' r='2.6' fill='%234a5a2e'/%3E%3Ccircle cx='16' cy='33' r='2.6' fill='%236b4a63'/%3E%3C/g%3E%3C/svg%3E") top 14px left 14px / 56px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg transform='translate(56 0) scale(-1 1)'%3E%3Cpath d='M3 52 V20 Q3 3 20 3 H52' fill='none' stroke='%23b3924a' stroke-width='1.3'/%3E%3Cpath d='M9 44 V22 Q9 9 22 9 H44' fill='none' stroke='%23b3924a' stroke-width='.6' opacity='.7'/%3E%3Cpath d='M13 13 q13 -1 16 12 q-13 1 -16 -12z' fill='%237d8f4e'/%3E%3Cpath d='M13 13 l12 10' stroke='%23fffdf7' stroke-width='.6'/%3E%3Ccircle cx='33' cy='16' r='2.6' fill='%234a5a2e'/%3E%3Ccircle cx='16' cy='33' r='2.6' fill='%236b4a63'/%3E%3C/g%3E%3C/svg%3E") top 14px right 14px / 56px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg transform='translate(0 56) scale(1 -1)'%3E%3Cpath d='M3 52 V20 Q3 3 20 3 H52' fill='none' stroke='%23b3924a' stroke-width='1.3'/%3E%3Cpath d='M9 44 V22 Q9 9 22 9 H44' fill='none' stroke='%23b3924a' stroke-width='.6' opacity='.7'/%3E%3Cpath d='M13 13 q13 -1 16 12 q-13 1 -16 -12z' fill='%237d8f4e'/%3E%3Cpath d='M13 13 l12 10' stroke='%23fffdf7' stroke-width='.6'/%3E%3Ccircle cx='33' cy='16' r='2.6' fill='%234a5a2e'/%3E%3Ccircle cx='16' cy='33' r='2.6' fill='%236b4a63'/%3E%3C/g%3E%3C/svg%3E") bottom 14px left 14px / 56px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg transform='translate(56 56) scale(-1 -1)'%3E%3Cpath d='M3 52 V20 Q3 3 20 3 H52' fill='none' stroke='%23b3924a' stroke-width='1.3'/%3E%3Cpath d='M9 44 V22 Q9 9 22 9 H44' fill='none' stroke='%23b3924a' stroke-width='.6' opacity='.7'/%3E%3Cpath d='M13 13 q13 -1 16 12 q-13 1 -16 -12z' fill='%237d8f4e'/%3E%3Cpath d='M13 13 l12 10' stroke='%23fffdf7' stroke-width='.6'/%3E%3Ccircle cx='33' cy='16' r='2.6' fill='%234a5a2e'/%3E%3Ccircle cx='16' cy='33' r='2.6' fill='%236b4a63'/%3E%3C/g%3E%3C/svg%3E") bottom 14px right 14px / 56px no-repeat,
+    radial-gradient(120% 80% at 50% 0%, #fffefa 0, transparent 60%),
+    linear-gradient(165deg, #fffdf6, #f3e9cf);
+  box-shadow: 0 50px 70px -34px rgba(0, 0, 0, .75), 0 0 0 1px rgba(227, 199, 125, .7), inset 0 0 0 7px #fffdf7, inset 0 0 0 8px rgba(179, 146, 74, .55), inset 0 0 60px rgba(179, 146, 74, .12);
+  animation: card-float 7s ease-in-out infinite;
+}
+@keyframes card-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+.gift__stage:hover .giftcard { animation-play-state: paused; }
+.giftcard::before {
+  content: ""; position: absolute; inset: 22% 12% 10%; pointer-events: none; opacity: .07;
+  background: url("../img/logo-mark.webp") center / contain no-repeat;
+}
+.giftcard > * { position: relative; }
+.giftcard__ribbon { top: 0; inset-inline-end: 3.4rem; width: 30px; height: 84px; filter: drop-shadow(0 4px 4px rgba(60, 40, 0, .35)); position: absolute !important; }
+.giftcard img {
+  width: 5.6rem; height: 5.6rem; object-fit: contain; padding: .7rem; margin-bottom: 1rem; border-radius: 50%; background: #fffdf7;
+  box-shadow: 0 0 0 1px rgba(179, 146, 74, .8), 0 0 0 5px #fffdf7, 0 0 0 6px rgba(179, 146, 74, .4), 0 10px 18px -8px rgba(60, 40, 0, .4);
+}
+.giftcard__to {
+  display: flex; align-items: center; justify-content: center; gap: .7rem; width: 100%;
+  font-size: 1.55rem; color: var(--olive); margin-bottom: .4rem !important;
+}
+.giftcard__to::before, .giftcard__to::after { content: ""; flex: none; width: 60px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='18' viewBox='0 0 60 18'%3E%3Cg transform=''%3E%3Cpath d='M2 9 H58' stroke='%23b3924a' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M6 9 q6 -8 13 -5 q-5 7 -13 5z' fill='%237d8f4e'/%3E%3Cpath d='M11 9 q6 8 13 5 q-5 -7 -13 -5z' fill='%2393a35f'/%3E%3Cpath d='M20 9 q6 -8 13 -5 q-5 7 -13 5z' fill='%237d8f4e'/%3E%3Cpath d='M25 9 q6 8 13 5 q-5 -7 -13 -5z' fill='%2393a35f'/%3E%3Cpath d='M34 9 q6 -8 13 -5 q-5 7 -13 5z' fill='%237d8f4e'/%3E%3Cpath d='M39 9 q6 8 13 5 q-5 -7 -13 -5z' fill='%2393a35f'/%3E%3Ccircle cx='54' cy='9' r='2.4' fill='%234a5a2e'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; }
+.giftcard__to::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='18' viewBox='0 0 60 18'%3E%3Cg transform='translate(60 0) scale(-1 1)'%3E%3Cpath d='M2 9 H58' stroke='%23b3924a' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M6 9 q6 -8 13 -5 q-5 7 -13 5z' fill='%237d8f4e'/%3E%3Cpath d='M11 9 q6 8 13 5 q-5 -7 -13 -5z' fill='%2393a35f'/%3E%3Cpath d='M20 9 q6 -8 13 -5 q-5 7 -13 5z' fill='%237d8f4e'/%3E%3Cpath d='M25 9 q6 8 13 5 q-5 -7 -13 -5z' fill='%2393a35f'/%3E%3Cpath d='M34 9 q6 -8 13 -5 q-5 7 -13 5z' fill='%237d8f4e'/%3E%3Cpath d='M39 9 q6 8 13 5 q-5 -7 -13 -5z' fill='%2393a35f'/%3E%3Ccircle cx='54' cy='9' r='2.4' fill='%234a5a2e'/%3E%3C/g%3E%3C/svg%3E"); }
+.giftcard__msg { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; font-size: 1.85rem; line-height: 1.7; color: var(--deep); }
+.giftcard__msg::before, .giftcard__msg::after {
+  content: ""; width: 62%; height: 9px;
+  background:
+    radial-gradient(circle, #b3924a 0 3px, transparent 3.5px) center / 9px 9px no-repeat,
+    linear-gradient(90deg, transparent, #b3924a 30%, transparent 46%, transparent 54%, #b3924a 70%, transparent) center / 100% 1px no-repeat;
+}
+.giftcard__from { font-size: 1.5rem; color: var(--olive); padding-bottom: .15rem; border-bottom: 1px solid rgba(179, 146, 74, .6); margin-top: .9rem !important; }
+.giftcard .is-ghost { opacity: .5; }
+.giftcard__brand { border-top: 0; padding-top: .4rem; margin-top: 1.1rem; font-size: .78rem; letter-spacing: .26em; }
+html[lang="en"] .giftcard__msg { font-size: 1.6rem; }
+@media (max-width: 900px) { .giftcard { width: min(100%, 20.5rem); padding: 3rem 2rem 1.8rem; } .giftcard__msg { font-size: 1.55rem; } .giftcard__to::before, .giftcard__to::after { width: 40px; } }
+@media (prefers-reduced-motion: reduce) { .giftcard { animation: none; } }
+
+/* reader floats in the middle with space above and below, so the whole sheet is visible */
+.reader { align-items: center; padding: 1.6rem 1rem; }
+.reader__sheet {
+  height: auto; max-height: min(100%, 46rem); border-radius: 26px;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .7);
+  scrollbar-width: thin; scrollbar-color: rgba(179, 146, 74, .6) transparent;
+}
+.reader__sheet::-webkit-scrollbar { width: 8px; }
+.reader__sheet::-webkit-scrollbar-thumb { background: rgba(179, 146, 74, .55); border-radius: 8px; border: 2px solid var(--paper); }
+.reader__sheet::-webkit-scrollbar-track { background: transparent; margin-block: 22px; }
+.reader__bar { border-radius: 26px 26px 0 0; }
+@media (max-width: 640px) {
+  .reader { padding: .8rem .6rem; }
+  .reader__sheet { height: auto; max-height: 100%; border-radius: 20px; }
+  .reader__bar { border-radius: 20px 20px 0 0; }
+}
+.tree--contact { width: 200px; height: 200px; }
+.tree--contact .name { fill: var(--gold-soft); }
+
+/* ---------- Journey: an olive rolls from 01 to 04 and turns into oil ---------- */
+.steps > .rail { position: absolute; inset: 0; pointer-events: none; list-style: none; }
+.rail__fill {
+  position: absolute; top: calc(1.55rem - 1px); left: 0; height: 3px; width: 100px; border-radius: 3px; transform-origin: 0 50%;
+  background: linear-gradient(90deg, rgba(138, 154, 91, .9), #e3c77d 55%, #f2d98c); box-shadow: 0 0 12px rgba(227, 199, 125, .7);
+}
+.rail--front { z-index: 3; }
+.rail__runner { position: absolute; top: 1.55rem; left: 0; width: 0; height: 0; will-change: transform; }
+.rail__runner svg { position: absolute; overflow: visible; transition: opacity .45s, scale .45s var(--ease); }
+.rail__olive { width: 30px; height: 30px; left: -15px; top: -15px; filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .45)); }
+.rail__drop { width: 26px; height: 34px; left: -13px; top: -21px; opacity: 0; scale: .4; filter: drop-shadow(0 0 10px rgba(240, 200, 80, .9)); }
+.rail__runner.is-oil .rail__olive { opacity: 0; scale: .3; }
+.rail__runner.is-oil .rail__drop { opacity: 1; scale: 1; }
+.rail__glow {
+  position: absolute; left: -26px; top: -26px; width: 52px; height: 52px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(227, 199, 125, .45), transparent 68%); animation: rail-glow 2.2s ease-in-out infinite;
+}
+@keyframes rail-glow { 50% { scale: 1.35; opacity: .5; } }
+.step__num { transition: background .5s, color .5s, border-color .5s, box-shadow .5s, scale .5s var(--ease); }
+.step h3 { transition: color .5s; }
+.step.is-lit .step__num { background: var(--gold-soft); border-color: var(--gold-soft); color: var(--deep); box-shadow: 0 0 0 6px rgba(227, 199, 125, .16), 0 0 26px rgba(227, 199, 125, .55); scale: 1.08; }
+.step.is-lit h3 { color: var(--gold-soft); }
+.steps.has-rail::before { background: rgba(227, 199, 125, .18); }

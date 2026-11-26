@@ -119,7 +119,7 @@ const GREENS = ['#5d6f4a', '#7f8f63', '#4a5a3c', '#6c7d55'];
 
 function buildTree(svg) {
   const mode = svg.dataset.tree; // full | mini | label | plain
-  const showName = mode === 'full' || mode === 'label';
+  const showName = mode === 'full' || mode === 'label' || mode === 'plain';
   svg.setAttribute('viewBox', mode === 'mini' || mode === 'plain' ? '50 60 300 330' : '0 0 400 400');
 
   const woodG = el('g');
@@ -583,3 +583,126 @@ document.querySelectorAll('.flavors').forEach(group => {
   }
   group.addEventListener('click', e => { const b = e.target.closest('.flavor'); if (b) pick(b); });
 });
+
+/* ---- Recipes: the bottle comes and pours only when the visitor reaches the plate ---- */
+document.querySelectorAll('.recipe').forEach(r => {
+  if (r.querySelector('.recipe__plate image')) r.classList.add('recipe--photo');
+  if (reduceMotion) { r.classList.add('is-oiled'); return; }
+  let busy = false;
+  function pour() {
+    if (busy) return;
+    busy = true;
+    r.classList.remove('is-oiled');
+    void r.offsetWidth;                 // restart the oil thread from empty
+    r.classList.add('is-pouring');
+    setTimeout(() => { r.classList.add('is-oiled'); r.classList.remove('is-pouring'); busy = false; }, 4300);
+  }
+  r.addEventListener('mouseenter', pour);
+  r.addEventListener('touchstart', pour, { passive: true });
+});
+
+/* ---- Article reader: guide articles open over the page instead of leaving it ---- */
+(function () {
+  const box = document.getElementById('reader');
+  if (!box || !window.fetch || !window.DOMParser || location.protocol === 'file:') return;
+  const sheet = document.getElementById('readerSheet');
+  const title = document.getElementById('readerTitle');
+  const img = document.getElementById('readerImg');
+  const body = document.getElementById('readerBody');
+  const more = document.getElementById('readerMore');
+  const bar = document.getElementById('readerProgress');
+  const cache = {};
+  let lastFocus = null, pageTitle = document.title;
+  const slugOf = href => (href.match(/([a-z0-9-]+)\.html(?:[?#].*)?$/i) || [])[1];
+
+  function load(slug) {
+    if (!cache[slug]) {
+      cache[slug] = fetch('articles/' + slug + '.html').then(r => {
+        if (!r.ok) throw new Error(r.status);
+        return r.text();
+      }).then(t => new DOMParser().parseFromString(t, 'text/html'));
+    }
+    return cache[slug];
+  }
+  function render(doc) {
+    const main = doc.querySelector('main.article');
+    if (!main) throw new Error('no article');
+    const pic = main.querySelector('.article__img');
+    sheet.dir = doc.documentElement.dir || 'rtl';
+    sheet.lang = doc.documentElement.lang || 'ar';
+    title.textContent = main.querySelector('h1').textContent;
+    img.src = pic ? pic.getAttribute('src').replace(/^\.\.\//, '') : 'assets/img/og.jpg';
+    body.innerHTML = main.querySelector('.article__body').innerHTML;
+    body.querySelectorAll('a[href^="../"]').forEach(a => a.setAttribute('href', a.getAttribute('href').slice(3) || './'));
+    const also = main.querySelector('.article__more');
+    more.innerHTML = '';
+    if (also) {
+      const h = document.createElement('h3');
+      h.textContent = also.querySelector('h2').textContent;
+      const ul = document.createElement('ul');
+      also.querySelectorAll('a').forEach(a => {
+        const li = document.createElement('li'), l = document.createElement('a');
+        l.href = 'articles/' + a.getAttribute('href');
+        l.textContent = a.textContent;
+        li.appendChild(l); ul.appendChild(li);
+      });
+      more.append(h, ul);
+    }
+    document.title = doc.title;
+    sheet.scrollTop = 0;
+    bar.style.scale = '0 1';
+  }
+  function show(slug, push) {
+    const wasOpen = !box.hidden;
+    if (box.hidden) {
+      lastFocus = document.activeElement;
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => box.classList.add('is-open'));
+    }
+    sheet.classList.add('is-loading');
+    // one history entry for the whole reading session: Back (or ×) always returns to the page
+    if (push) history[wasOpen ? 'replaceState' : 'pushState']({ reader: slug }, '', '#read-' + slug);
+    return load(slug).then(doc => {
+      render(doc);
+      sheet.classList.remove('is-loading');
+      document.getElementById('readerClose').focus({ preventScroll: true });
+    }).catch(() => { location.href = 'articles/' + slug + '.html'; });
+  }
+  function hide() {
+    if (box.hidden) return;
+    box.classList.remove('is-open');
+    document.body.style.overflow = '';
+    document.title = pageTitle;
+    setTimeout(() => { box.hidden = true; }, 420);
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  function close() {
+    if (history.state && history.state.reader) history.back();
+    else { hide(); history.replaceState(null, '', location.pathname + location.search + '#guide'); }
+  }
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
+    const href = a.getAttribute('href');
+    if (!/^articles\/[a-z0-9-]+\.html/i.test(href)) return;
+    e.preventDefault();
+    show(slugOf(href), true);
+  });
+  document.getElementById('readerClose').addEventListener('click', close);
+  document.getElementById('readerBack').addEventListener('click', close);
+  box.addEventListener('click', e => { if (e.target === box) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
+  sheet.addEventListener('scroll', () => {
+    const max = sheet.scrollHeight - sheet.clientHeight;
+    bar.style.scale = (max > 0 ? Math.min(sheet.scrollTop / max, 1) : 0) + ' 1';
+  }, { passive: true });
+  window.addEventListener('popstate', e => {
+    if (e.state && e.state.reader) show(e.state.reader, false);
+    else hide();
+  });
+  langBtn.addEventListener('click', () => { pageTitle = TITLES[lang]; });
+  const m = location.hash.match(/^#read-([a-z0-9-]+)$/i);
+  if (m) { history.replaceState({ reader: m[1] }, '', location.hash); show(m[1], false); }
+})();

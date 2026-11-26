@@ -194,3 +194,64 @@
   mo = new MutationObserver(write);   // language switch rewrites the text
   write();
 })();
+
+/* Journey: an olive rolls along the line with the scroll, lights each step, and becomes oil after the press */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const steps = document.querySelector('.steps');
+  if (!steps) return;
+  const items = [...steps.querySelectorAll('.step')];
+  const nums = items.map(s => s.querySelector('.step__num'));
+  if (nums.length < 2) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const back = document.createElement('li'), front = document.createElement('li');
+  back.className = 'rail'; front.className = 'rail rail--front';
+  back.setAttribute('aria-hidden', 'true'); front.setAttribute('aria-hidden', 'true');
+  back.innerHTML = '<i class="rail__fill"></i>';
+  front.innerHTML = '<div class="rail__runner"><i class="rail__glow"></i>' +
+    '<svg class="rail__olive" viewBox="-15 -15 30 30" xmlns="' + NS + '">' +
+      '<ellipse rx="9.5" ry="12.5" fill="#6f8a3a"/><ellipse rx="9.5" ry="12.5" fill="url(#railOlive)"/>' +
+      '<ellipse cx="-3.4" cy="-5" rx="2.4" ry="4" fill="#fff" opacity=".4" transform="rotate(18 -3.4 -5)"/>' +
+      '<path d="M0 -12.5 q1 -4 5 -5" fill="none" stroke="#b3924a" stroke-width="1.4" stroke-linecap="round"/>' +
+      '<defs><radialGradient id="railOlive" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#a9c063"/><stop offset=".6" stop-color="#6f8a3a"/><stop offset="1" stop-color="#3f5320"/></radialGradient></defs>' +
+    '</svg>' +
+    '<svg class="rail__drop" viewBox="-13 -21 26 34" xmlns="' + NS + '">' +
+      '<path d="M0 -20 C7 -9 12 -3 12 3 A12 12 0 0 1 -12 3 C-12 -3 -7 -9 0 -20Z" fill="url(#railOil)"/>' +
+      '<path d="M-6 2 a7 7 0 0 0 4 6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".65"/>' +
+      '<defs><linearGradient id="railOil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe9a0"/><stop offset=".55" stop-color="#e2b93a"/><stop offset="1" stop-color="#b88a18"/></linearGradient></defs>' +
+    '</svg></div>';
+  steps.prepend(back);
+  steps.append(front);
+  const fill = back.firstChild, runner = front.firstChild, olive = runner.querySelector('.rail__olive');
+  let ticking = false;
+
+  function frame() {
+    ticking = false;
+    const box = steps.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (box.bottom < -200 || box.top > vh + 200) return;
+    const cs = nums.map(n => { const r = n.getBoundingClientRect(); return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top }; });
+    const flat = cs.every(c => Math.abs(c.y - cs[0].y) < 4);
+    steps.classList.toggle('has-rail', flat);
+    back.style.display = front.style.display = flat ? '' : 'none';
+    if (!flat) {                       // stacked layout: just light each step as it reaches mid-screen
+      items.forEach((s, i) => s.classList.toggle('is-lit', nums[i].getBoundingClientRect().top < vh * 0.62));
+      return;
+    }
+    const lineY = box.top + cs[0].y;
+    const p = Math.min(Math.max((vh * 0.86 - lineY) / (vh * 0.52), 0), 1);
+    const a = cs[0].x, b = cs[cs.length - 1].x;
+    const x = a + (b - a) * p, dir = b > a ? 1 : -1, dist = Math.abs(x - a);
+    runner.style.transform = 'translate(' + x.toFixed(1) + 'px, 0)';
+    olive.style.rotate = (dir * dist / 12 * 57.3).toFixed(1) + 'deg';      // rolling, not sliding
+    fill.style.transform = 'translate(' + Math.min(a, x).toFixed(1) + 'px, 0) scaleX(' + (dist / 100).toFixed(4) + ')';
+    fill.style.background = dir < 0 ? 'linear-gradient(270deg, rgba(138,154,91,.9), #e3c77d 55%, #f2d98c)' : '';
+    items.forEach((s, i) => s.classList.toggle('is-lit', dir * (x - cs[i].x) >= -2 && p > 0.004));
+    runner.classList.toggle('is-oil', dir * (x - cs[Math.min(2, cs.length - 1)].x) >= -2);   // after the press
+    runner.style.opacity = p <= 0.004 ? 0 : 1;
+  }
+  function ask() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', ask, { passive: true });
+  window.addEventListener('resize', ask);
+  ask();
+})();
